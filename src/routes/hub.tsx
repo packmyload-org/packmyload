@@ -82,15 +82,15 @@ function HubPage() {
       <section className="bg-surface py-16 sm:py-24">
         <div className="container-page">
           <SectionHeading eyebrow="Why Hub" title="A marketplace built around your move" />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {marketplaceBenefits.map((benefit, index) => (
               <Reveal
-                key={benefit.title}
-                delay={(index % 3) * 90}
-                className="rounded-3xl border border-border bg-card p-6 shadow-soft"
+                key={benefit}
+                delay={(index % 3) * 70}
+                className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 shadow-soft"
               >
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{benefit.body}</p>
+                <Check className="size-4 shrink-0 text-accent" aria-hidden="true" />
+                <span className="text-sm font-medium">{benefit}</span>
               </Reveal>
             ))}
           </div>
