@@ -16,11 +16,14 @@ export function Footer() {
     <footer className="bg-primary-deep text-primary-foreground">
       <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-sm font-bold text-accent-foreground">
-              P
-            </span>
-            <span className="font-display text-xl font-semibold">Packmyload</span>
+          <Link to="/" className="inline-flex items-center">
+            <img
+              src="/logo.png"
+              alt="Packmyload.com"
+              width={198}
+              height={50}
+              className="h-9 w-auto brightness-0 invert"
+            />
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/70">
             We make moving seamless. Every move is unique and we have the right solutions to make
