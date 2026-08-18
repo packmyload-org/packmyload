@@ -35,13 +35,14 @@ export function Header() {
       )}
     >
       <div className="container-page flex h-18 items-center justify-between gap-4">
-        <Link to="/" className="group flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="bg-brand-gradient flex size-9 items-center justify-center rounded-xl text-sm font-bold text-primary-foreground shadow-soft">
-            P
-          </span>
-          <span className="font-display text-xl font-semibold tracking-tight text-foreground">
-            Packmyload
-          </span>
+        <Link to="/" className="inline-flex items-center" onClick={() => setOpen(false)}>
+          <img
+            src="/logo.png"
+            alt="Packmyload.com"
+            width={198}
+            height={50}
+            className="h-9 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
