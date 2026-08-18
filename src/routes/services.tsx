@@ -5,6 +5,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { services } from "@/lib/site-data";
 
+const ogImage = services[0]?.image ?? "";
+
 const title = "Our Services | Packmyload Movers Lagos & Abuja";
 const description =
   "Browse the full Packmyload catalog: home and office relocations, store delivery, interstate car transport, junk removal, storage, cleaning and international moves.";
@@ -16,8 +18,8 @@ export const Route = createFileRoute("/services")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
-      { property: "og:image", content: services[0].image },
-      { name: "twitter:image", content: services[0].image },
+      { property: "og:image", content: ogImage },
+      { name: "twitter:image", content: ogImage },
     ],
     links: [{ rel: "canonical", href: "/services" }],
   }),
