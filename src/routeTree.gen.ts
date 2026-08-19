@@ -11,10 +11,22 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FaqsRouteImport } from './routes/Faqs'
+import { Route as InterstateCarTransportRouteImport } from './routes/Interstate-Car-Transport'
+import { Route as JunkMovesRouteImport } from './routes/Junk-moves'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as BookRouteImport } from './routes/book'
+import { Route as CleaningRouteImport } from './routes/cleaning'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as HomeMovesRouteImport } from './routes/home-moves'
 import { Route as HubRouteImport } from './routes/hub'
+import { Route as InternationalRelocationsRouteImport } from './routes/international-relocations'
+import { Route as OfficeMovesRouteImport } from './routes/office-moves'
+import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as StorageRouteImport } from './routes/storage'
+import { Route as StoreDeliveryRouteImport } from './routes/store-delivery'
+import { Route as WeddingHandlingRouteImport } from './routes/wedding-handling'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,9 +38,29 @@ const FaqsRoute = FaqsRouteImport.update({
   path: '/Faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InterstateCarTransportRoute = InterstateCarTransportRouteImport.update({
+  id: '/Interstate-Car-Transport',
+  path: '/Interstate-Car-Transport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JunkMovesRoute = JunkMovesRouteImport.update({
+  id: '/Junk-moves',
+  path: '/Junk-moves',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookRoute = BookRouteImport.update({
   id: '/book',
   path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CleaningRoute = CleaningRouteImport.update({
+  id: '/cleaning',
+  path: '/cleaning',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -36,9 +68,35 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeMovesRoute = HomeMovesRouteImport.update({
+  id: '/home-moves',
+  path: '/home-moves',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HubRoute = HubRouteImport.update({
   id: '/hub',
   path: '/hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternationalRelocationsRoute =
+  InternationalRelocationsRouteImport.update({
+    id: '/international-relocations',
+    path: '/international-relocations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const OfficeMovesRoute = OfficeMovesRouteImport.update({
+  id: '/office-moves',
+  path: '/office-moves',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -46,47 +104,165 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StorageRoute = StorageRouteImport.update({
+  id: '/storage',
+  path: '/storage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreDeliveryRoute = StoreDeliveryRouteImport.update({
+  id: '/store-delivery',
+  path: '/store-delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeddingHandlingRoute = WeddingHandlingRouteImport.update({
+  id: '/wedding-handling',
+  path: '/wedding-handling',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/Faqs': typeof FaqsRoute
+  '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
+  '/Junk-moves': typeof JunkMovesRoute
+  '/about': typeof AboutRoute
   '/book': typeof BookRoute
+  '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
+  '/international-relocations': typeof InternationalRelocationsRoute
+  '/office-moves': typeof OfficeMovesRoute
+  '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
+  '/storage': typeof StorageRoute
+  '/store-delivery': typeof StoreDeliveryRoute
+  '/wedding-handling': typeof WeddingHandlingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/Faqs': typeof FaqsRoute
+  '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
+  '/Junk-moves': typeof JunkMovesRoute
+  '/about': typeof AboutRoute
   '/book': typeof BookRoute
+  '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
+  '/international-relocations': typeof InternationalRelocationsRoute
+  '/office-moves': typeof OfficeMovesRoute
+  '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
+  '/storage': typeof StorageRoute
+  '/store-delivery': typeof StoreDeliveryRoute
+  '/wedding-handling': typeof WeddingHandlingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/Faqs': typeof FaqsRoute
+  '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
+  '/Junk-moves': typeof JunkMovesRoute
+  '/about': typeof AboutRoute
   '/book': typeof BookRoute
+  '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
+  '/international-relocations': typeof InternationalRelocationsRoute
+  '/office-moves': typeof OfficeMovesRoute
+  '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
+  '/storage': typeof StorageRoute
+  '/store-delivery': typeof StoreDeliveryRoute
+  '/wedding-handling': typeof WeddingHandlingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Faqs' | '/book' | '/contact' | '/hub' | '/services'
+  fullPaths:
+    | '/'
+    | '/Faqs'
+    | '/Interstate-Car-Transport'
+    | '/Junk-moves'
+    | '/about'
+    | '/book'
+    | '/cleaning'
+    | '/contact'
+    | '/gallery'
+    | '/home-moves'
+    | '/hub'
+    | '/international-relocations'
+    | '/office-moves'
+    | '/partner'
+    | '/services'
+    | '/storage'
+    | '/store-delivery'
+    | '/wedding-handling'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Faqs' | '/book' | '/contact' | '/hub' | '/services'
-  id: '__root__' | '/' | '/Faqs' | '/book' | '/contact' | '/hub' | '/services'
+  to:
+    | '/'
+    | '/Faqs'
+    | '/Interstate-Car-Transport'
+    | '/Junk-moves'
+    | '/about'
+    | '/book'
+    | '/cleaning'
+    | '/contact'
+    | '/gallery'
+    | '/home-moves'
+    | '/hub'
+    | '/international-relocations'
+    | '/office-moves'
+    | '/partner'
+    | '/services'
+    | '/storage'
+    | '/store-delivery'
+    | '/wedding-handling'
+  id:
+    | '__root__'
+    | '/'
+    | '/Faqs'
+    | '/Interstate-Car-Transport'
+    | '/Junk-moves'
+    | '/about'
+    | '/book'
+    | '/cleaning'
+    | '/contact'
+    | '/gallery'
+    | '/home-moves'
+    | '/hub'
+    | '/international-relocations'
+    | '/office-moves'
+    | '/partner'
+    | '/services'
+    | '/storage'
+    | '/store-delivery'
+    | '/wedding-handling'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FaqsRoute: typeof FaqsRoute
+  InterstateCarTransportRoute: typeof InterstateCarTransportRoute
+  JunkMovesRoute: typeof JunkMovesRoute
+  AboutRoute: typeof AboutRoute
   BookRoute: typeof BookRoute
+  CleaningRoute: typeof CleaningRoute
   ContactRoute: typeof ContactRoute
+  GalleryRoute: typeof GalleryRoute
+  HomeMovesRoute: typeof HomeMovesRoute
   HubRoute: typeof HubRoute
+  InternationalRelocationsRoute: typeof InternationalRelocationsRoute
+  OfficeMovesRoute: typeof OfficeMovesRoute
+  PartnerRoute: typeof PartnerRoute
   ServicesRoute: typeof ServicesRoute
+  StorageRoute: typeof StorageRoute
+  StoreDeliveryRoute: typeof StoreDeliveryRoute
+  WeddingHandlingRoute: typeof WeddingHandlingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -105,11 +281,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/Interstate-Car-Transport': {
+      id: '/Interstate-Car-Transport'
+      path: '/Interstate-Car-Transport'
+      fullPath: '/Interstate-Car-Transport'
+      preLoaderRoute: typeof InterstateCarTransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Junk-moves': {
+      id: '/Junk-moves'
+      path: '/Junk-moves'
+      fullPath: '/Junk-moves'
+      preLoaderRoute: typeof JunkMovesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book': {
       id: '/book'
       path: '/book'
       fullPath: '/book'
       preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cleaning': {
+      id: '/cleaning'
+      path: '/cleaning'
+      fullPath: '/cleaning'
+      preLoaderRoute: typeof CleaningRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -119,11 +323,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-moves': {
+      id: '/home-moves'
+      path: '/home-moves'
+      fullPath: '/home-moves'
+      preLoaderRoute: typeof HomeMovesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hub': {
       id: '/hub'
       path: '/hub'
       fullPath: '/hub'
       preLoaderRoute: typeof HubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/international-relocations': {
+      id: '/international-relocations'
+      path: '/international-relocations'
+      fullPath: '/international-relocations'
+      preLoaderRoute: typeof InternationalRelocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/office-moves': {
+      id: '/office-moves'
+      path: '/office-moves'
+      fullPath: '/office-moves'
+      preLoaderRoute: typeof OfficeMovesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -133,16 +372,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/storage': {
+      id: '/storage'
+      path: '/storage'
+      fullPath: '/storage'
+      preLoaderRoute: typeof StorageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store-delivery': {
+      id: '/store-delivery'
+      path: '/store-delivery'
+      fullPath: '/store-delivery'
+      preLoaderRoute: typeof StoreDeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wedding-handling': {
+      id: '/wedding-handling'
+      path: '/wedding-handling'
+      fullPath: '/wedding-handling'
+      preLoaderRoute: typeof WeddingHandlingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FaqsRoute: FaqsRoute,
+  InterstateCarTransportRoute: InterstateCarTransportRoute,
+  JunkMovesRoute: JunkMovesRoute,
+  AboutRoute: AboutRoute,
   BookRoute: BookRoute,
+  CleaningRoute: CleaningRoute,
   ContactRoute: ContactRoute,
+  GalleryRoute: GalleryRoute,
+  HomeMovesRoute: HomeMovesRoute,
   HubRoute: HubRoute,
+  InternationalRelocationsRoute: InternationalRelocationsRoute,
+  OfficeMovesRoute: OfficeMovesRoute,
+  PartnerRoute: PartnerRoute,
   ServicesRoute: ServicesRoute,
+  StorageRoute: StorageRoute,
+  StoreDeliveryRoute: StoreDeliveryRoute,
+  WeddingHandlingRoute: WeddingHandlingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
