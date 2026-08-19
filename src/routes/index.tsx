@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, PlayCircle, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
+import heroVideo from "@/assets/hero-move.mp4.asset.json";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
 import { QuoteBar } from "@/components/site/QuoteBar";
@@ -63,20 +64,25 @@ function Home() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-40 left-1/2 size-[38rem] -translate-x-1/2 rounded-full bg-accent-soft blur-3xl"
-        />
-        <div className="container-page relative pt-14 pb-16 sm:pt-20 sm:pb-24">
+        <div aria-hidden="true" className="absolute inset-0">
+          <video
+            src={heroVideo.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="size-full object-cover"
+          />
+          <div className="bg-brand-gradient absolute inset-0 opacity-80" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
+        </div>
+        <div className="container-page relative pt-16 pb-16 sm:pt-24 sm:pb-24">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground/70 shadow-soft">
-              <ShieldCheck className="size-4 text-accent" aria-hidden="true" />
-              Goods-in-transit insured · Lagos &amp; Abuja
-            </span>
-            <h1 className="mt-6 text-4xl leading-[1.03] font-semibold sm:text-6xl lg:text-7xl">
-              We make moving <span className="text-gradient-brand">seamless</span>
+            <h1 className="text-4xl leading-[1.03] font-semibold text-primary-foreground sm:text-6xl lg:text-7xl">
+              We make moving <span className="text-accent">seamless</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
               Every move is unique and we have the right solutions to make your move feel
               effortless.
             </p>
@@ -93,8 +99,8 @@ function Home() {
                   key={image.src}
                   className={
                     index === 4
-                      ? "col-span-2 rounded-3xl bg-surface p-3 sm:col-span-1"
-                      : "rounded-3xl bg-surface p-3"
+                      ? "col-span-2 rounded-3xl border border-primary-foreground/15 bg-primary-foreground/10 p-3 backdrop-blur-sm sm:col-span-1"
+                      : "rounded-3xl border border-primary-foreground/15 bg-primary-foreground/10 p-3 backdrop-blur-sm"
                   }
                 >
                   <img
