@@ -19,8 +19,8 @@ export function Footer() {
           <Link to="/" className="inline-flex items-center">
             <img
               src="/logo.png"
-              alt="Packmyload.com"
-              width={198}
+              alt="Packmyload"
+              width={145}
               height={50}
               className="h-9 w-auto brightness-0 invert"
             />

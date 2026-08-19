@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, Phone, X, ChevronDown } from "lucide-react";
+import { AlignRight, Phone, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { services, site } from "@/lib/site-data";
@@ -38,8 +38,8 @@ export function Header() {
         <Link to="/" className="inline-flex items-center" onClick={() => setOpen(false)}>
           <img
             src="/logo.png"
-            alt="Packmyload.com"
-            width={198}
+            alt="Packmyload"
+            width={145}
             height={50}
             className="h-9 w-auto"
           />
@@ -106,7 +106,7 @@ export function Header() {
             aria-expanded={open}
             className="inline-flex size-10 items-center justify-center rounded-xl border border-border text-foreground lg:hidden"
           >
-            {open ? <Menu className="size-5" /> : <Menu className="size-5" />}
+            {open ? <X className="size-5" /> : <AlignRight className="size-5" />}
           </button>
         </div>
       </div>
