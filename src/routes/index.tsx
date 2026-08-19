@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, PlayCircle, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
+import heroVideo from "@/assets/hero-move.mp4.asset.json";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
 import { QuoteBar } from "@/components/site/QuoteBar";
@@ -98,8 +99,8 @@ function Home() {
                   key={image.src}
                   className={
                     index === 4
-                      ? "col-span-2 rounded-3xl bg-surface p-3 sm:col-span-1"
-                      : "rounded-3xl bg-surface p-3"
+                      ? "col-span-2 rounded-3xl border border-primary-foreground/15 bg-primary-foreground/10 p-3 backdrop-blur-sm sm:col-span-1"
+                      : "rounded-3xl border border-primary-foreground/15 bg-primary-foreground/10 p-3 backdrop-blur-sm"
                   }
                 >
                   <img
