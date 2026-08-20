@@ -133,9 +133,17 @@ function Home() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    // Defer the decorative hero video until the page is interactive so it
-    // never competes with LCP on mobile networks.
-    const timer = window.setTimeout(() => setShowVideo(true), 1500);
+    // The hero video is decorative: skip it entirely on small screens and slow
+    // connections, and defer it elsewhere so it never competes with LCP.
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+    ).connection;
+    const slow =
+      connection?.saveData === true || /2g|3g/.test(connection?.effectiveType ?? "") === true;
+    if (slow || window.innerWidth < 1024 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    const timer = window.setTimeout(() => setShowVideo(true), 2500);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -163,8 +171,8 @@ function Home() {
               We make moving <span className="text-accent">seamless</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
-              Every move is unique and we have the right solutions to make your move feel
-              effortless.
+              Packmyload is a moving company in Lagos and Abuja: insured home and office
+              relocations, packing, storage and delivery anywhere in Nigeria.
             </p>
           </Reveal>
 
@@ -174,32 +182,37 @@ function Home() {
 
           <Reveal delay={200} className="mt-14">
             <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              {heroImages.map((image, index) => (
-                <li
-                  key={image.src}
-                  className={
-                    "overflow-hidden rounded-3xl bg-card shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] ring-1 ring-primary-foreground/15" +
-                    (index === 4 ? " col-span-2 sm:col-span-1" : "")
-                  }
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={420}
-                    height={320}
-                    loading="eager"
-                    decoding={index === 0 ? "sync" : "async"}
-                    {...(index === 0 ? { fetchPriority: "high" as const } : {})}
-                    className="block h-full w-full bg-card object-cover"
-                    style={{ aspectRatio: "4 / 3" }}
-                  />
-                </li>
-              ))}
+              {heroImages.map((image, index) => {
+                const base = image.src.replace(".webp", "");
+                return (
+                  <li
+                    key={image.src}
+                    className={
+                      "overflow-hidden rounded-3xl bg-card shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] ring-1 ring-primary-foreground/15" +
+                      (index === 4 ? " col-span-2 sm:col-span-1" : "")
+                    }
+                  >
+                    <img
+                      src={`${base}-320.webp`}
+                      srcSet={`${base}-320.webp 320w, ${base}-640.webp 640w`}
+                      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
+                      alt={image.alt}
+                      width={420}
+                      height={320}
+                      loading={index < 2 ? "eager" : "lazy"}
+                      decoding="async"
+                      {...(index === 0 ? { fetchPriority: "high" as const } : {})}
+                      className="block h-full w-full bg-card object-cover"
+                      style={{ aspectRatio: "4 / 3" }}
+                    />
+                  </li>
+                );
+              })}
             </ul>
-
           </Reveal>
         </div>
       </section>
+
 
       <section className="bg-brand-gradient relative overflow-hidden">
         <div className="container-page grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2">
