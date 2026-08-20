@@ -47,12 +47,14 @@ export function Footer() {
             We make moving seamless. Every move is unique and we have the right solutions to make
             your move feel effortless.
           </p>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {[
               { href: site.socials.instagram, Icon: Instagram, label: "Instagram" },
               { href: site.socials.facebook, Icon: Facebook, label: "Facebook" },
               { href: site.socials.twitter, Icon: Twitter, label: "X" },
               { href: site.socials.linkedin, Icon: Linkedin, label: "LinkedIn" },
+              { href: site.socials.threads, Icon: ThreadsIcon, label: "Threads" },
+              { href: site.socials.youtube, Icon: YouTubeIcon, label: "YouTube" },
             ].map(({ href, Icon, label }) => (
               <a
                 key={label}
