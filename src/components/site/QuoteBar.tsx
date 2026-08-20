@@ -89,6 +89,7 @@ export function QuoteBar({ className }: { className?: string }) {
               id="quote-moving-date"
               type="date"
               value={draft.date}
+              min={minDate}
               onChange={(event) => update({ date: event.target.value })}
               aria-label="Moving date"
               className="w-full rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card appearance-none bg-transparent text-sm font-medium text-foreground outline-none [color-scheme:light_dark] [&::-webkit-calendar-picker-indicator]:hidden placeholder:text-muted-foreground/70"
