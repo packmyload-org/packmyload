@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { CtaBand } from "@/components/site/CtaBand";
+import { KeywordClusters } from "@/components/site/KeywordClusters";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -13,9 +14,9 @@ import {
 } from "@/components/ui/accordion";
 import { IMG,
   SITE_URL, services, site, abs } from "@/lib/site-data";
-import { chooseChecklist, costFactors, lagosAreas, lagosFaqs } from "@/lib/seo-data";
+import { chooseChecklist, costFactors, lagosAreas, lagosFaqs, whatToExpect } from "@/lib/seo-data";
 
-const title = "Moving Company in Lagos | Insured Home & Office Movers";
+const title = "Best Moving Company in Lagos | Movers & Packers";
 const description =
   "Packmyload is a Lagos moving company offering insured home and office relocations, packing, storage and junk removal across Lekki, Ikoyi, Ikeja, Yaba, Ogudu, Alimosho and Ikorodu.";
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
@@ -241,6 +242,29 @@ function LagosPage() {
           </Accordion>
         </Reveal>
       </section>
+
+      <section className="bg-secondary/40 py-16 sm:py-20">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="How it works"
+            title="What to expect when you book movers and packers"
+            body="Six steps from first quote to a set-up home or office."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whatToExpect.map((item) => (
+              <Reveal
+                key={item.title}
+                className="rounded-3xl border border-border bg-background p-6 shadow-soft"
+              >
+                <h3 className="font-display text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <KeywordClusters />
 
       <CtaBand />
     </>

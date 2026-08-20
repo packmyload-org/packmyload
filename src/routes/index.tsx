@@ -4,6 +4,7 @@ import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
 import heroVideo from "@/assets/hero-move.mp4.asset.json";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
+import { KeywordClusters } from "@/components/site/KeywordClusters";
 import { QuoteBar } from "@/components/site/QuoteBar";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -29,9 +30,9 @@ import { lagosFaqs, nigeriaFaqs } from "@/lib/seo-data";
 
 const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[2]!, faqs[3]!];
 
-const title = "Packmyload | Moving Company in Lagos & Abuja, Nigeria";
+const title = "Best Moving Company in Lagos & Abuja | Packmyload";
 const description =
-  "We make moving seamless. Home and office relocations, storage, delivery, junk removal and utility set-up across Lagos, Abuja and all of Nigeria.";
+  "Top-rated movers and packers in Lagos & Abuja. Insured home and office relocation, interstate moves across Nigeria, storage, junk removal and set-up.";
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 
 export const Route = createFileRoute("/")({
@@ -507,6 +508,8 @@ function Home() {
           .
         </p>
       </section>
+
+      <KeywordClusters />
 
       <CtaBand />
     </>

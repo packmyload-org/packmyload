@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { CtaBand } from "@/components/site/CtaBand";
+import { KeywordClusters } from "@/components/site/KeywordClusters";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -15,9 +16,9 @@ import { IMG,
   SITE_URL, services, site, abs } from "@/lib/site-data";
 import { chooseChecklist, costFactors, nigeriaFaqs, nigeriaRoutes } from "@/lib/seo-data";
 
-const title = "Moving Company in Nigeria | Interstate & International Movers";
+const title = "Moving Company in Nigeria | Interstate Movers & Packers";
 const description =
-  "Packmyload moves homes, offices and vehicles across Nigeria — Lagos to Abuja, Port Harcourt, Ibadan and every state — plus international relocations, all insured in transit.";
+  "Packmyload moves homes, offices and cars across Nigeria — Lagos to Abuja, Port Harcourt and Ibadan — plus international relocations, insured in transit.";
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 const canonical = "https://www.packmyload.com/moving-company-nigeria";
 
@@ -216,6 +217,8 @@ function NigeriaPage() {
           </Accordion>
         </Reveal>
       </section>
+
+      <KeywordClusters />
 
       <CtaBand />
     </>
