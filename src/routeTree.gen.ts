@@ -34,6 +34,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StorageRouteImport } from './routes/storage'
 import { Route as StoreDeliveryRouteImport } from './routes/store-delivery'
 import { Route as WeddingHandlingRouteImport } from './routes/wedding-handling'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as MoversIndexRouteImport } from './routes/movers.index'
 import { Route as MoversAreaRouteImport } from './routes/movers.$area'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
@@ -164,6 +165,11 @@ const WeddingHandlingRoute = WeddingHandlingRouteImport.update({
   path: '/wedding-handling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const MoversIndexRoute = MoversIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -176,14 +182,14 @@ const MoversAreaRoute = MoversAreaRouteImport.update({
 } as any)
 const AuthenticatedAdminBookingsRoute =
   AuthenticatedAdminBookingsRouteImport.update({
-    id: '/admin/bookings',
-    path: '/admin/bookings',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/bookings',
+    path: '/bookings',
+    getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
-  id: '/admin/leads',
-  path: '/admin/leads',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -211,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/movers/$area': typeof MoversAreaRoute
   '/movers/': typeof MoversIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -240,6 +247,7 @@ export interface FileRoutesByTo {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/movers/$area': typeof MoversAreaRoute
   '/movers': typeof MoversIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -272,6 +280,7 @@ export interface FileRoutesById {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/movers/$area': typeof MoversAreaRoute
   '/movers/': typeof MoversIndexRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -304,6 +313,7 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/admin'
     | '/movers/$area'
     | '/movers/'
     | '/admin/bookings'
@@ -333,6 +343,7 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/admin'
     | '/movers/$area'
     | '/movers'
     | '/admin/bookings'
@@ -364,6 +375,7 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/_authenticated/admin'
     | '/movers/$area'
     | '/movers/'
     | '/_authenticated/admin/bookings'
@@ -575,6 +587,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeddingHandlingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/movers/': {
       id: '/movers/'
       path: '/'
@@ -591,29 +610,40 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/admin/bookings': {
       id: '/_authenticated/admin/bookings'
-      path: '/admin/bookings'
+      path: '/bookings'
       fullPath: '/admin/bookings'
       preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
-      path: '/admin/leads'
+      path: '/leads'
       fullPath: '/admin/leads'
       preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedAdminRoute
     }
   }
 }
 
-interface AuthenticatedRouteRouteChildren {
+interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
 }
 
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =
