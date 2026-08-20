@@ -125,14 +125,14 @@ export function WhatsAppChat() {
     setSaving(true);
     setError(null);
     const { error: insertError } = await supabase.from("lead_inquiries").insert({
-      full_name: final.full_name ?? "",
-      email: final.email ?? "",
-      phone: final.phone ?? "",
-      pickup_address: final.pickup_address ?? "",
-      destination_address: final.destination_address ?? "",
-      pickup_floor: final.pickup_floor ?? null,
-      destination_floor: final.destination_floor ?? null,
-      moving_date: final.moving_date ?? null,
+      full_name: final['full_name'] ?? "",
+      email: final['email'] ?? "",
+      phone: final['phone'] ?? "",
+      pickup_address: final['pickup_address'] ?? "",
+      destination_address: final['destination_address'] ?? "",
+      pickup_floor: final['pickup_floor'] ?? null,
+      destination_floor: final['destination_floor'] ?? null,
+      moving_date: final['moving_date'] ?? null,
     });
     setSaving(false);
     if (insertError) {
