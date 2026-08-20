@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { AlignRight, Phone, X, ChevronDown } from "lucide-react";
+import { AlignRight, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { services, site } from "@/lib/site-data";
+import { services } from "@/lib/site-data";
 
 const mainNav = [
   { label: "Gallery", to: "/gallery" },
@@ -89,14 +89,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${site.phone}`}
-            className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground md:flex"
-          >
-            <Phone className="size-4 text-accent" aria-hidden="true" />
-            {site.phoneDisplay}
-          </a>
-          <Button asChild size="lg" className="hidden rounded-full sm:inline-flex">
+          <Button asChild size="lg" className="rounded-full">
             <Link to="/book">Book now</Link>
           </Button>
           <button
@@ -161,9 +154,6 @@ export function Header() {
                 <Link to="/book" onClick={() => setOpen(false)}>
                   Book now
                 </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full">
-                <a href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a>
               </Button>
             </div>
           </div>

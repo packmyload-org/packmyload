@@ -2,6 +2,22 @@ import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { services, site } from "@/lib/site-data";
 
+function ThreadsIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.186 24h-.007c-3.581-.024-6.182-2.338-6.182-5.92 0-1.834.853-3.483 2.31-4.633 1.312-1.036 3.036-1.553 4.987-1.496.052.002.105.004.158.004-.052-.617-.183-1.27-.486-1.86-.39-.79-1.05-1.467-1.918-1.962-.92-.527-2.037-.795-3.226-.795-.42 0-.832.04-1.228.12-1.066.22-2.014.73-2.75 1.476-.74.75-1.22 1.69-1.39 2.75-.17 1.05.04 2.09.59 2.99.55.89 1.38 1.56 2.39 1.89.36.12.74.18 1.12.18.78 0 1.52-.3 2.09-.85.57-.54.89-1.27.89-2.06 0-.58-.17-1.13-.5-1.59-.33-.47-.8-.81-1.35-.98-.55-.17-1.13-.15-1.66.07-.53.21-.97.6-1.23 1.08-.26.48-.33 1.03-.19 1.56.14.53.48.99.95 1.28l-.55 1.04c-.73-.39-1.24-1.06-1.45-1.89-.21-.83-.1-1.7.31-2.43.41-.73 1.07-1.27 1.85-1.52.78-.25 1.62-.17 2.35.23.73.39 1.29 1.02 1.58 1.77.29.75.3 1.58.03 2.34-.55 1.5-1.87 2.5-3.45 2.5-.56 0-1.12-.12-1.64-.37-1.25-.58-2.25-1.55-2.89-2.78-.64-1.23-.83-2.62-.54-3.99.29-1.37 1.03-2.58 2.12-3.47 1.09-.89 2.45-1.39 3.85-1.39 1.44 0 2.83.45 3.93 1.29 1.1.84 1.86 2.02 2.17 3.34.16.67.21 1.37.16 2.07 1.82-.25 3.37-1.04 4.45-2.28 1.2-1.38 1.85-3.2 1.85-5.14 0-1.93-.65-3.75-1.85-5.13-1.2-1.38-2.9-2.24-4.78-2.42-.33-.03-.66-.05-.99-.05-3.46 0-6.71 1.35-9.16 3.8C2.35 8.2 1 11.45 1 14.91c0 3.46 1.35 6.71 3.8 9.16 2.45 2.45 5.7 3.8 9.16 3.8.33 0 .66-.02.99-.05 1.88-.18 3.58-1.04 4.78-2.42 1.2-1.38 1.85-3.2 1.85-5.13 0-1.94-.65-3.76-1.85-5.14-1.08-1.24-2.63-2.03-4.45-2.28.05.7 0 1.4-.16 2.07-.31 1.32-1.07 2.5-2.17 3.34-1.1.84-2.49 1.29-3.93 1.29-.42 0-.83-.04-1.23-.12z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  );
+}
+
 const company = [
   { label: "Movers in Lagos", to: "/moving-company-lagos" },
   { label: "Movers in Nigeria", to: "/moving-company-nigeria" },
@@ -31,12 +47,14 @@ export function Footer() {
             We make moving seamless. Every move is unique and we have the right solutions to make
             your move feel effortless.
           </p>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {[
               { href: site.socials.instagram, Icon: Instagram, label: "Instagram" },
               { href: site.socials.facebook, Icon: Facebook, label: "Facebook" },
               { href: site.socials.twitter, Icon: Twitter, label: "X" },
               { href: site.socials.linkedin, Icon: Linkedin, label: "LinkedIn" },
+              { href: site.socials.threads, Icon: ThreadsIcon, label: "Threads" },
+              { href: site.socials.youtube, Icon: YouTubeIcon, label: "YouTube" },
             ].map(({ href, Icon, label }) => (
               <a
                 key={label}
