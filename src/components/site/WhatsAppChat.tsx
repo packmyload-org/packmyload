@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 
-const WHATSAPP_NUMBER = "2348032463069";
+const WHATSAPP_NUMBER = "2347007225776";
 const GREETING = "Hi PackMyLoad, I'd like to get a quote for a move.";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(GREETING)}`;
 
