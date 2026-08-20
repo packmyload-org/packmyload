@@ -215,15 +215,14 @@ export function WhatsAppChat() {
                 your chat with your quote request already typed out.
               </p>
               <Button
-                asChild
                 size="lg"
                 className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
+                onClick={openWhatsApp}
               >
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="size-4" aria-hidden="true" />
-                  Chat on WhatsApp
-                </a>
+                <MessageCircle className="size-4" aria-hidden="true" />
+                Chat on WhatsApp
               </Button>
+
             </div>
           ) : (
             <>
