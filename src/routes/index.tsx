@@ -44,8 +44,9 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:image", content: ogImage },
       { name: "twitter:image", content: ogImage },
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
-    links: [{ rel: "canonical", href: "https://www.packmyload.com/" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [
       {
         type: "application/ld+json",
