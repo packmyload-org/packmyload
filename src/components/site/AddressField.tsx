@@ -32,6 +32,8 @@ export function AddressField({
 
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [open, setOpen] = useState(false);
+  const [searchAvailable, setSearchAvailable] = useState(true);
+
   const [loading, setLoading] = useState(false);
   const [locating, setLocating] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
@@ -55,15 +57,18 @@ export function AddressField({
       search({ data: { query } })
         .then((result) => {
           if (!active) return;
+          setSearchAvailable(result.available);
           setSuggestions(result.suggestions);
           setOpen(result.suggestions.length > 0);
         })
         .catch(() => {
           if (active) {
+            setSearchAvailable(false);
             setSuggestions([]);
             setOpen(false);
           }
         })
+
         .finally(() => {
           if (active) setLoading(false);
         });
