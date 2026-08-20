@@ -57,7 +57,7 @@ export function QuoteBar({ className }: { className?: string }) {
         <Button
           type="submit"
           size="lg"
-          className="h-13 shrink-0 gap-2 rounded-2xl bg-accent text-base font-semibold text-accent-foreground hover:bg-accent/90 md:rounded-full"
+          className="h-13 shrink-0 gap-2 rounded-2xl bg-accent text-base font-semibold text-white hover:bg-accent/90 md:rounded-full"
         >
           <Search className="size-4" aria-hidden="true" />
           Get quote

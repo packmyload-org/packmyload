@@ -104,7 +104,7 @@ export function Header() {
           <span className="hidden h-8 w-px bg-primary-foreground/30 lg:block" />
           <Link
             to="/book"
-            className="inline-flex items-center justify-center rounded-full bg-[oklch(0.72_0.13_235)] px-7 py-3 text-sm font-extrabold tracking-wide uppercase text-primary-deep ring-4 ring-primary-foreground/15 transition-transform hover:scale-[1.03]"
+            className="inline-flex items-center justify-center rounded-full bg-[oklch(0.72_0.13_235)] px-7 py-3 text-sm font-extrabold tracking-wide uppercase text-white ring-4 ring-primary-foreground/15 transition-transform hover:scale-[1.03]"
           >
             Book now
           </Link>
@@ -176,7 +176,7 @@ export function Header() {
               <Link
                 to="/book"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center rounded-full bg-[oklch(0.72_0.13_235)] px-6 py-3 text-sm font-extrabold uppercase text-primary-deep"
+                className="inline-flex items-center justify-center rounded-full bg-[oklch(0.72_0.13_235)] px-6 py-3 text-sm font-extrabold uppercase text-white"
               >
                 Book now
               </Link>
