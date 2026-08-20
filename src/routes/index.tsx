@@ -332,7 +332,7 @@ function Home() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((service, index) => (
             <Reveal key={service.slug} delay={index * 60}>
-              <ServiceCard service={service} eager={index < 3} />
+              <ServiceCard service={service} />
             </Reveal>
           ))}
         </div>
