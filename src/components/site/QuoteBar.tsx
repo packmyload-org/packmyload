@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { AddressField } from "@/components/site/AddressField";
+import { todayISO } from "@/lib/booking-rules";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "packmyload:quote-draft";
@@ -13,6 +14,7 @@ type Draft = { from: string; to: string; date: string };
 export function QuoteBar({ className }: { className?: string }) {
   const [draft, setDraft] = useState<Draft>({ from: "", to: "", date: "" });
   const navigate = useNavigate();
+  const minDate = useMemo(() => todayISO(), []);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
