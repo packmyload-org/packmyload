@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
 import heroVideo from "@/assets/hero-move.mp4.asset.json";
@@ -15,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   IMG,
+  SITE_URL,
   faqs,
   features,
   heroImages,
@@ -31,7 +33,7 @@ const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[
 const title = "Packmyload | Moving Company in Lagos & Abuja, Nigeria";
 const description =
   "We make moving seamless. Home and office relocations, storage, delivery, junk removal and utility set-up across Lagos, Abuja and all of Nigeria.";
-const ogImage = `${IMG}/images/Packmyload.com-home-office-relocations.webp`;
+const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,7 +58,7 @@ export const Route = createFileRoute("/")({
             alternateName: "Packmyload.com",
             description,
             url: "https://www.packmyload.com/",
-            logo: `${IMG}/images/logo.png`,
+            logo: `${SITE_URL}/logo.svg`,
             image: ogImage,
             telephone: site.phone,
             email: site.email,
@@ -128,19 +130,30 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    // Defer the decorative hero video until the page is interactive so it
+    // never competes with LCP on mobile networks.
+    const timer = window.setTimeout(() => setShowVideo(true), 1500);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      <section className="relative overflow-hidden">
+      <section className="bg-primary-deep relative overflow-hidden">
         <div aria-hidden="true" className="absolute inset-0">
-          <video
-            src={heroVideo.url}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="size-full object-cover"
-          />
+          {showVideo ? (
+            <video
+              src={heroVideo.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              className="size-full object-cover"
+            />
+          ) : null}
           <div className="bg-brand-gradient absolute inset-0 opacity-80" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
         </div>
@@ -175,8 +188,11 @@ function Home() {
                     alt={image.alt}
                     width={420}
                     height={320}
-                    loading={index < 3 ? "eager" : "lazy"}
+                    loading="eager"
+                    decoding={index === 0 ? "sync" : "async"}
+                    {...(index === 0 ? { fetchPriority: "high" as const } : {})}
                     className="mx-auto h-32 w-auto object-contain sm:h-36"
+                    style={{ aspectRatio: "420 / 320" }}
                   />
                 </li>
               ))}

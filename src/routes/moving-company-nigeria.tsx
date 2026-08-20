@@ -11,13 +11,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { IMG, services, site } from "@/lib/site-data";
+import { IMG,
+  SITE_URL, services, site } from "@/lib/site-data";
 import { chooseChecklist, costFactors, nigeriaFaqs, nigeriaRoutes } from "@/lib/seo-data";
 
 const title = "Moving Company in Nigeria | Interstate & International Movers";
 const description =
   "Packmyload moves homes, offices and vehicles across Nigeria — Lagos to Abuja, Port Harcourt, Ibadan and every state — plus international relocations, all insured in transit.";
-const ogImage = `${IMG}/images/Packmyload.com-home-office-relocations.webp`;
+const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 const canonical = "/moving-company-nigeria";
 
 export const Route = createFileRoute("/moving-company-nigeria")({

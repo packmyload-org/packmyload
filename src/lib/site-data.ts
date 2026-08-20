@@ -1,4 +1,5 @@
-export const IMG = "https://www.packmyload.com";
+export const IMG = "";
+export const SITE_URL = "https://www.packmyload.com";
 
 export const site = {
   name: "Packmyload",
@@ -18,10 +19,13 @@ export const site = {
   },
 };
 
-export const heroImages = [1, 2, 3, 4, 5].map((n) => ({
-  src: `${IMG}/images/team/hero-img${n}.webp`,
-  alt: `Moving company in Lagos & Abuja Nigeria: people discovering Packmyload, stage ${n}`,
-}));
+export const heroImages = [
+  { src: "/images/team/hero-img1.webp", alt: "PackMyLoad professional movers carrying a packed box out of a Lagos apartment" },
+  { src: "/images/team/hero-img2.webp", alt: "Nigerian family smiling among moving boxes in their new home" },
+  { src: "/images/team/hero-img3.webp", alt: "PackMyLoad moving truck being loaded with furniture on a Lagos street" },
+  { src: "/images/team/hero-img4.webp", alt: "PackMyLoad mover wrapping fragile glassware in protective packaging" },
+  { src: "/images/team/hero-img5.webp", alt: "Customer booking a PackMyLoad move on her phone beside packed boxes" },
+];
 
 export const steps = [
   {
@@ -366,7 +370,7 @@ export const galleryImages = [
   `${IMG}/images/about/packmyload_1696572694895.webp`,
   `${IMG}/images/partner/packmyload_1695798593791.webp`,
   `${IMG}/images/partner/packmyload_1697583737398.webp`,
-  `${IMG}/images/partner/packmyload_1697583683638.webp`,
+  `${IMG}/images/packman.webp`,
   `${IMG}/images/coverge-pack.webp`,
   `${IMG}/images/Packmyload.com-home-office-relocations.webp`,
   `${IMG}/images/packman.webp`,
