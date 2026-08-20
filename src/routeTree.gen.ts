@@ -29,6 +29,7 @@ import { Route as MovingCompanyLagosRouteImport } from './routes/moving-company-
 import { Route as MovingCompanyNigeriaRouteImport } from './routes/moving-company-nigeria'
 import { Route as OfficeMovesRouteImport } from './routes/office-moves'
 import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as PaymentStatusRouteImport } from './routes/payment-status'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StorageRouteImport } from './routes/storage'
@@ -141,6 +142,11 @@ const PartnerRoute = PartnerRouteImport.update({
   path: '/partner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentStatusRoute = PaymentStatusRouteImport.update({
+  id: '/payment-status',
+  path: '/payment-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -218,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
+  '/payment-status': typeof PaymentStatusRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/storage': typeof StorageRoute
@@ -249,6 +256,7 @@ export interface FileRoutesByTo {
   '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
+  '/payment-status': typeof PaymentStatusRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/storage': typeof StorageRoute
@@ -282,6 +290,7 @@ export interface FileRoutesById {
   '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
+  '/payment-status': typeof PaymentStatusRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/storage': typeof StorageRoute
@@ -316,6 +325,7 @@ export interface FileRouteTypes {
     | '/moving-company-nigeria'
     | '/office-moves'
     | '/partner'
+    | '/payment-status'
     | '/services'
     | '/sitemap.xml'
     | '/storage'
@@ -347,6 +357,7 @@ export interface FileRouteTypes {
     | '/moving-company-nigeria'
     | '/office-moves'
     | '/partner'
+    | '/payment-status'
     | '/services'
     | '/sitemap.xml'
     | '/storage'
@@ -379,6 +390,7 @@ export interface FileRouteTypes {
     | '/moving-company-nigeria'
     | '/office-moves'
     | '/partner'
+    | '/payment-status'
     | '/services'
     | '/sitemap.xml'
     | '/storage'
@@ -413,6 +425,7 @@ export interface RootRouteChildren {
   MovingCompanyNigeriaRoute: typeof MovingCompanyNigeriaRoute
   OfficeMovesRoute: typeof OfficeMovesRoute
   PartnerRoute: typeof PartnerRoute
+  PaymentStatusRoute: typeof PaymentStatusRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StorageRoute: typeof StorageRoute
@@ -562,6 +575,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PartnerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payment-status': {
+      id: '/payment-status'
+      path: '/payment-status'
+      fullPath: '/payment-status'
+      preLoaderRoute: typeof PaymentStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -702,6 +722,7 @@ const rootRouteChildren: RootRouteChildren = {
   MovingCompanyNigeriaRoute: MovingCompanyNigeriaRoute,
   OfficeMovesRoute: OfficeMovesRoute,
   PartnerRoute: PartnerRoute,
+  PaymentStatusRoute: PaymentStatusRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StorageRoute: StorageRoute,

@@ -7,12 +7,12 @@ import { confirmDepositPayment } from "@/lib/booking.functions";
 const title = "Payment status | Packmyload";
 const description = "Confirmation of your Packmyload move deposit payment.";
 
-type Search = { reference?: string; trxref?: string };
+type Search = { reference?: string | undefined; trxref?: string | undefined };
 
 export const Route = createFileRoute("/payment-status")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    reference: typeof search.reference === "string" ? search.reference : undefined,
-    trxref: typeof search.trxref === "string" ? search.trxref : undefined,
+    reference: typeof search["reference"] === "string" ? (search["reference"] as string) : undefined,
+    trxref: typeof search["trxref"] === "string" ? (search["trxref"] as string) : undefined,
   }),
   head: () => ({
     meta: [
