@@ -85,13 +85,15 @@ export function QuoteBar({ className }: { className?: string }) {
               type="date"
               value={draft.date}
               onChange={(event) => update({ date: event.target.value })}
-              className="w-full appearance-none bg-transparent text-sm font-medium text-foreground outline-none [color-scheme:light_dark] [&::-webkit-calendar-picker-indicator]:hidden placeholder:text-muted-foreground/70"
+              aria-label="Moving date"
+              className="w-full rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card appearance-none bg-transparent text-sm font-medium text-foreground outline-none [color-scheme:light_dark] [&::-webkit-calendar-picker-indicator]:hidden placeholder:text-muted-foreground/70"
             />
           </div>
         </div>
         <Button
           type="submit"
           size="lg"
+          aria-label="Get a moving quote"
           className="h-13 shrink-0 rounded-2xl bg-accent text-base font-semibold text-white hover:bg-accent/90 md:rounded-full"
         >
           Get quote

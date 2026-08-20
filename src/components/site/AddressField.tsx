@@ -139,7 +139,8 @@ export function AddressField({
           onChange={(event) => onChange(event.target.value)}
           onFocus={() => suggestions.length > 0 && setOpen(true)}
           onBlur={() => window.setTimeout(() => setOpen(false), 150)}
-          className="w-full bg-transparent text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/70"
+          aria-label={label}
+          className="w-full rounded-md bg-transparent text-sm font-medium text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card placeholder:text-muted-foreground/70"
         />
       </div>
 
@@ -151,7 +152,7 @@ export function AddressField({
             onClick={useMyLocation}
             aria-label="Use my current location"
             title="Use my current location"
-            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-accent"
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             <LocateFixed className="size-4" aria-hidden="true" />
           </button>
@@ -161,7 +162,7 @@ export function AddressField({
           onClick={() => setMapOpen(true)}
           aria-label={`Pick ${label.toLowerCase()} on map`}
           title="Pick on map"
-          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-accent"
+          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
         >
           <MapIcon className="size-4" aria-hidden="true" />
         </button>
@@ -181,7 +182,7 @@ export function AddressField({
                 type="button"
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => pick(suggestion)}
-                className="flex w-full items-start gap-2 px-4 py-2.5 text-left text-sm text-foreground transition-colors hover:bg-secondary"
+                className="flex w-full items-start gap-2 px-4 py-2.5 text-left text-sm text-foreground transition-colors hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none"
               >
                 <MapPin className="mt-0.5 size-3.5 shrink-0 text-accent" aria-hidden="true" />
                 <span className="min-w-0">{suggestion.label}</span>

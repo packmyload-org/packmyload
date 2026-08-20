@@ -11,13 +11,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { IMG, services, site } from "@/lib/site-data";
+import { IMG,
+  SITE_URL, services, site } from "@/lib/site-data";
 import { chooseChecklist, costFactors, lagosAreas, lagosFaqs } from "@/lib/seo-data";
 
 const title = "Moving Company in Lagos | Insured Home & Office Movers";
 const description =
   "Packmyload is a Lagos moving company offering insured home and office relocations, packing, storage and junk removal across Lekki, Ikoyi, Ikeja, Yaba, Ogudu, Alimosho and Ikorodu.";
-const ogImage = `${IMG}/images/Packmyload.com-home-office-relocations.webp`;
+const ogImage = `${SITE_URL}/images/home-office-relocations.webp`;
 const canonical = "/moving-company-lagos";
 
 export const Route = createFileRoute("/moving-company-lagos")({

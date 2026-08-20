@@ -9,7 +9,7 @@ import { IMG } from "@/lib/site-data";
 const title = "Become a Business Partner | Packmyload";
 const description =
   "Find out how your business can benefit by partnering with Packmyload — business & retail delivery, integrations and lead monetization, transportation and logistics.";
-const ogImage = `${IMG}/images/partner/packmyload_1695798527485.webp`;
+const ogImage = `${IMG}/images/gallery-4.webp`;
 
 const categories = [
   {
@@ -35,7 +35,7 @@ const blocks = [
       "One-off deliveries (piece of furniture)",
     ],
     body: "Packmyload can manage your business delivery logistics for you. If you deliver large items to your clients but you don't want to waste time managing the moves.",
-    image: `${IMG}/images/partner/packmyload_1695798527485.webp`,
+    image: `${IMG}/images/gallery-4.webp`,
   },
   {
     heading: "Integration & Lead Monetization",
@@ -45,7 +45,7 @@ const blocks = [
       "One off deliveries (piece of furniture)",
     ],
     body: "You don't have to be in the space to be a part of the moving and delivery ecosystem. If you have leads and users that move often, you can get a commission for each user you send our way.",
-    image: `${IMG}/images/partner/packmyload_1695798593791.webp`,
+    image: `${IMG}/images/gallery-3.webp`,
   },
 ];
 
