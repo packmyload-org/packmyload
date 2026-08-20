@@ -76,7 +76,7 @@ function AboutPage() {
     <>
       <PageHero
         eyebrow="About Packmyload"
-        title="Check out our history as well as opportunities we offer"
+        title="About Packmyload — our story, our team and our services"
         body={`We make moving seamless. Every move is unique and we have the right solutions to make your move feel effortless — across ${site.cities}.`}
       />
 
@@ -143,7 +143,7 @@ function AboutPage() {
                       to={item.to}
                       className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
                     >
-                      Learn more
+                      {`Learn more about ${item.heading}`}
                       <ArrowRight className="size-4" aria-hidden="true" />
                     </Link>
                   ) : null}

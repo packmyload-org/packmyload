@@ -105,7 +105,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{item.short}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent-foreground">
-                  Learn more
+                  {`View ${item.title} details`}
                   <ArrowRight
                     className="size-4 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"
