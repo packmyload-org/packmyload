@@ -105,6 +105,13 @@ export const lagosFaqs = [
   {
     q: "Can you handle an office move in Lagos without stopping work?",
     a: "Yes. We survey the site, agree a phased sequence with your facilities team and can run the move at the weekend or after hours, then reassemble desks and workstations so your team walks into a working office.",
+  },  {
+    q: "Are movers and packers in Lagos worth the cost?",
+    a: "For most households yes. Professional packers use proper materials, pack fragile items such as glassware, marble and fine art to a higher specification, dismantle and reassemble furniture, and carry goods-in-transit insurance — so the risk of damage, a second trip or a lost day of work is far lower than a self-managed move with a hired van.",
+  },
+  {
+    q: "How do I book a moving company in Lagos?",
+    a: "Enter your pick-up and drop-off addresses and preferred date on the booking form, add floor levels and photos of bulky items, and we confirm volume and access before sending an itemised quote. You can book up to 30 days ahead or request on-demand.",
   },
 ];
 
@@ -128,6 +135,9 @@ export const nigeriaFaqs = [
   {
     q: "What else can you set up at the new address?",
     a: "Packmyload Hub handles the tasks that follow a move — electricity and internet set-up, cleaning, storage and other essentials — so you are not chasing separate vendors after moving day.",
+  },  {
+    q: "How much do long distance movers cost in Nigeria?",
+    a: "Interstate pricing is driven by volume, the route and its distance, access at both ends and the packing level you choose. A Lagos to Abuja household run is quoted differently from Lagos to Port Harcourt, and vehicle transport is priced separately. Every quote is itemised before you commit, with Pack Now, Pay Later available on long-distance moves.",
   },
 ];
 
@@ -151,5 +161,80 @@ export const nearMeFaqs = [
   {
     q: "Are your movers insured and vetted?",
     a: "Yes. Crews are vetted and trained, and every move is backed by a goods-in-transit insurance policy from the moment your items are in our hands.",
+  },  {
+    q: "How do I choose the best movers near me?",
+    a: "Shortlist companies that actually cover your street, then compare goods-in-transit insurance from pick-up, an itemised written quote based on volume and access, trained and uniformed crews, a stated claims timeline, and whether packing, storage, cleaning and junk removal come from the same team.",
+  },
+  {
+    q: "Do you offer same-day movers near me?",
+    a: "Yes. Request an on-demand move and, where a crew is available nearby in Lagos or Abuja, we can reach your address in as little as 30 minutes for same-day pick-up.",
+  },
+];
+
+// Keyword clusters: the real phrases people search for moving services in
+// Nigeria, grouped by intent and mapped to the page that answers each one.
+export const keywordClusters = [
+  {
+    heading: "Movers and packers",
+    terms: [
+      { label: "movers and packers in Lagos", to: "/moving-company-lagos" },
+      { label: "packers and movers near me", to: "/best-moving-company-near-me" },
+      { label: "professional packing service", to: "/home-moves" },
+      { label: "house movers in Lagos", to: "/home-moves" },
+    ],
+  },
+  {
+    heading: "Home and office relocation",
+    terms: [
+      { label: "home relocation services", to: "/home-moves" },
+      { label: "office relocation company", to: "/office-moves" },
+      { label: "corporate movers Lagos", to: "/office-moves" },
+      { label: "furniture moving service", to: "/home-moves" },
+    ],
+  },
+  {
+    heading: "Long distance and interstate",
+    terms: [
+      { label: "interstate movers Nigeria", to: "/moving-company-nigeria" },
+      { label: "Lagos to Abuja movers", to: "/moving-company-nigeria" },
+      { label: "long distance moving company", to: "/moving-company-nigeria" },
+      { label: "car transport across Nigeria", to: "/Interstate-Car-Transport" },
+    ],
+  },
+  {
+    heading: "Around the move",
+    terms: [
+      { label: "storage units in Lagos", to: "/storage" },
+      { label: "junk removal service", to: "/Junk-moves" },
+      { label: "post-move cleaning", to: "/cleaning" },
+      { label: "international relocation from Nigeria", to: "/international-relocations" },
+    ],
+  },
+] as const;
+
+export const whatToExpect = [
+  {
+    title: "1. Tell us what is moving",
+    body: "Share your pick-up and drop-off addresses, home or office size, floor levels and preferred date. Photos of bulky items help us size the crew and vehicle correctly.",
+  },
+  {
+    title: "2. Get an itemised quote",
+    body: "We price on volume, distance, access and the packing level you choose — a written breakdown, not a flat phone number with extras added on moving day.",
+  },
+  {
+    title: "3. Packing day",
+    body: "Vetted, uniformed packers arrive with proper materials, wrap fragile items to a higher specification, dismantle furniture and label everything by room.",
+  },
+  {
+    title: "4. Transit, insured",
+    body: "Your goods are covered by a goods-in-transit policy from the moment they are in our hands, and you stay in contact with the crew for the whole run.",
+  },
+  {
+    title: "5. Set-up at the new address",
+    body: "We reassemble furniture, place boxes by room and unpack if you booked it, then remove packing waste so the space is usable the same day.",
+  },
+  {
+    title: "6. Everything after the move",
+    body: "Packmyload Hub covers cleaning, storage, junk removal, electricity and internet set-up so you are not chasing separate vendors after moving day.",
   },
 ];

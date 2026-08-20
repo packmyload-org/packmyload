@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { CtaBand } from "@/components/site/CtaBand";
+import { KeywordClusters } from "@/components/site/KeywordClusters";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -14,9 +15,9 @@ import {
 import { SITE_URL, services, site } from "@/lib/site-data";
 import { chooseChecklist, lagosAreas, nearMeFaqs, nigeriaRoutes } from "@/lib/seo-data";
 
-const title = "Best Moving Company Near Me | Packmyload Lagos & Abuja";
+const title = "Best Moving Company Near Me | Movers in Lagos & Abuja";
 const description =
-  "Looking for the best moving company near you in Lagos or Abuja? Packmyload sends insured, vetted movers to your street — on-demand in as little as 30 minutes, or booked up to 30 days ahead.";
+  "Searching for the best moving company near you? Packmyload sends insured, vetted movers to your street in Lagos and Abuja — on-demand or booked ahead.";
 const ogImage = `${SITE_URL}/images/coverge-pack.webp`;
 const canonical = "https://www.packmyload.com/best-moving-company-near-me";
 
@@ -242,6 +243,8 @@ function NearMePage() {
           </Accordion>
         </Reveal>
       </section>
+
+      <KeywordClusters />
 
       <CtaBand />
     </>
