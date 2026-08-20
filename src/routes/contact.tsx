@@ -12,7 +12,7 @@ import { site } from "@/lib/site-data";
 
 const title = "Contact Packmyload | Movers in Lagos & Abuja";
 const description =
-  "Get in touch with Packmyload. Call 0700 253 0903, email enquiries@packmyload.com or send us a message and we'll respond quickly.";
+  "Get in touch with Packmyload. Call 0700 722 5776, email enquiries@packmyload.com or send us a message and we'll respond quickly.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

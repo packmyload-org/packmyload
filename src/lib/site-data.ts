@@ -2,8 +2,8 @@ export const IMG = "https://www.packmyload.com";
 
 export const site = {
   name: "Packmyload",
-  phone: "07002530903",
-  phoneDisplay: "0700 253 0903",
+  phone: "+2347007225776",
+  phoneDisplay: "0700 722 5776",
   email: "enquiries@packmyload.com",
   address: "2 Hundeyin St, Ogudu, Lagos 105102, Nigeria",
   cities: "Lagos & Abuja, Nigeria",

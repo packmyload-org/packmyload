@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as FaqsRouteImport } from './routes/Faqs'
 import { Route as InterstateCarTransportRouteImport } from './routes/Interstate-Car-Transport'
 import { Route as JunkMovesRouteImport } from './routes/Junk-moves'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as CleaningRouteImport } from './routes/cleaning'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -30,6 +32,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StorageRouteImport } from './routes/storage'
 import { Route as StoreDeliveryRouteImport } from './routes/store-delivery'
 import { Route as WeddingHandlingRouteImport } from './routes/wedding-handling'
+import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,9 +54,18 @@ const JunkMovesRoute = JunkMovesRouteImport.update({
   path: '/Junk-moves',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookRoute = BookRouteImport.update({
@@ -137,6 +149,11 @@ const WeddingHandlingRoute = WeddingHandlingRouteImport.update({
   path: '/wedding-handling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -144,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/book': typeof BookRoute
   '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
@@ -160,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/admin/leads': typeof AuthenticatedAdminLeadsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -167,6 +186,7 @@ export interface FileRoutesByTo {
   '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/book': typeof BookRoute
   '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
@@ -183,14 +203,17 @@ export interface FileRoutesByTo {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/admin/leads': typeof AuthenticatedAdminLeadsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/Faqs': typeof FaqsRoute
   '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/book': typeof BookRoute
   '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
@@ -207,6 +230,7 @@ export interface FileRoutesById {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -216,6 +240,7 @@ export interface FileRouteTypes {
     | '/Interstate-Car-Transport'
     | '/Junk-moves'
     | '/about'
+    | '/auth'
     | '/book'
     | '/cleaning'
     | '/contact'
@@ -232,6 +257,7 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/admin/leads'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -239,6 +265,7 @@ export interface FileRouteTypes {
     | '/Interstate-Car-Transport'
     | '/Junk-moves'
     | '/about'
+    | '/auth'
     | '/book'
     | '/cleaning'
     | '/contact'
@@ -255,13 +282,16 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/admin/leads'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/Faqs'
     | '/Interstate-Car-Transport'
     | '/Junk-moves'
     | '/about'
+    | '/auth'
     | '/book'
     | '/cleaning'
     | '/contact'
@@ -278,14 +308,17 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/_authenticated/admin/leads'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   FaqsRoute: typeof FaqsRoute
   InterstateCarTransportRoute: typeof InterstateCarTransportRoute
   JunkMovesRoute: typeof JunkMovesRoute
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   BookRoute: typeof BookRoute
   CleaningRoute: typeof CleaningRoute
   ContactRoute: typeof ContactRoute
@@ -334,11 +367,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JunkMovesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book': {
@@ -453,15 +500,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeddingHandlingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/leads': {
+      id: '/_authenticated/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   FaqsRoute: FaqsRoute,
   InterstateCarTransportRoute: InterstateCarTransportRoute,
   JunkMovesRoute: JunkMovesRoute,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   BookRoute: BookRoute,
   CleaningRoute: CleaningRoute,
   ContactRoute: ContactRoute,
