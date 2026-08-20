@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CalendarDays, Search } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { AddressField } from "@/components/site/AddressField";
@@ -85,16 +85,15 @@ export function QuoteBar({ className }: { className?: string }) {
               type="date"
               value={draft.date}
               onChange={(event) => update({ date: event.target.value })}
-              className="w-full bg-transparent text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/70"
+              className="w-full appearance-none bg-transparent text-sm font-medium text-foreground outline-none [color-scheme:light_dark] [&::-webkit-calendar-picker-indicator]:hidden placeholder:text-muted-foreground/70"
             />
           </div>
         </div>
         <Button
           type="submit"
           size="lg"
-          className="h-13 shrink-0 gap-2 rounded-2xl bg-accent text-base font-semibold text-white hover:bg-accent/90 md:rounded-full"
+          className="h-13 shrink-0 rounded-2xl bg-accent text-base font-semibold text-white hover:bg-accent/90 md:rounded-full"
         >
-          <Search className="size-4" aria-hidden="true" />
           Get quote
         </Button>
       </div>
