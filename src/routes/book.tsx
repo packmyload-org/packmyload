@@ -18,7 +18,7 @@ export const Route = createFileRoute("/book")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
     ],
-    links: [{ rel: "canonical", href: "/book" }],
+    links: [{ rel: "canonical", href: "https://www.packmyload.com/book" }],
   }),
   component: BookPage,
 });

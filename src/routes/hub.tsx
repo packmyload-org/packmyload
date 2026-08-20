@@ -22,7 +22,7 @@ export const Route = createFileRoute("/hub")({
       { property: "og:image", content: heroImage },
       { name: "twitter:image", content: heroImage },
     ],
-    links: [{ rel: "canonical", href: "/hub" }],
+    links: [{ rel: "canonical", href: "https://www.packmyload.com/hub" }],
   }),
   component: HubPage,
 });
