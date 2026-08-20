@@ -3,6 +3,8 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "luc
 import { services, site } from "@/lib/site-data";
 
 const company = [
+  { label: "Movers in Lagos", to: "/moving-company-lagos" },
+  { label: "Movers in Nigeria", to: "/moving-company-nigeria" },
   { label: "About us", to: "/about" },
   { label: "Gallery", to: "/gallery" },
   { label: "Partner with us", to: "/partner" },

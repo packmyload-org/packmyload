@@ -8,7 +8,14 @@ import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   IMG,
+  faqs,
   features,
   heroImages,
   marketplaceBenefits,
@@ -17,6 +24,9 @@ import {
   steps,
   testimonials,
 } from "@/lib/site-data";
+import { lagosFaqs, nigeriaFaqs } from "@/lib/seo-data";
+
+const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[2]!, faqs[3]!];
 
 const title = "Packmyload | Moving Company in Lagos & Abuja, Nigeria";
 const description =
@@ -37,23 +47,80 @@ export const Route = createFileRoute("/")({
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "MovingCompany",
-          name: "Packmyload",
-          description,
-          telephone: site.phone,
-          email: site.email,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "2 Hundeyin St, Ogudu",
-            addressLocality: "Lagos",
-            postalCode: "105102",
-            addressCountry: "NG",
+        children: JSON.stringify([
+          {
+            "@context": "https://schema.org",
+            "@type": "MovingCompany",
+            "@id": "https://www.packmyload.com/#organization",
+            name: "Packmyload",
+            alternateName: "Packmyload.com",
+            description,
+            url: "https://www.packmyload.com/",
+            logo: `${IMG}/images/logo.png`,
+            image: ogImage,
+            telephone: site.phone,
+            email: site.email,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "2 Hundeyin St, Ogudu",
+              addressLocality: "Lagos",
+              addressRegion: "Lagos",
+              postalCode: "105102",
+              addressCountry: "NG",
+            },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "City", name: "Abuja" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            knowsLanguage: ["en-NG"],
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ],
+                opens: "08:00",
+                closes: "20:00",
+              },
+            ],
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Moving and relocation services",
+              itemListElement: services.map((service) => ({
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: service.title,
+                  description: service.short,
+                },
+              })),
+            },
+            sameAs: Object.values(site.socials),
           },
-          areaServed: ["Lagos", "Abuja", "Nigeria"],
-          sameAs: Object.values(site.socials),
-        }),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Packmyload",
+            url: "https://www.packmyload.com/",
+            publisher: { "@id": "https://www.packmyload.com/#organization" },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: homeFaqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: { "@type": "Answer", text: faq.a },
+            })),
+          },
+        ]),
       },
     ],
   }),
@@ -373,6 +440,39 @@ function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="container-page py-16 sm:py-24">
+        <SectionHeading
+          eyebrow="Answers"
+          title="Moving in Lagos and Nigeria: quick answers"
+          body="The questions customers ask most before booking a move."
+        />
+        <Reveal className="mx-auto mt-10 max-w-3xl rounded-4xl border border-border bg-card p-4 shadow-soft sm:p-8">
+          <Accordion type="single" collapsible className="w-full">
+            {homeFaqs.map((faq, index) => (
+              <AccordionItem key={faq.q} value={`home-faq-${index}`}>
+                <AccordionTrigger className="text-left text-base font-semibold">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          More detail on{" "}
+          <Link to="/moving-company-lagos" className="font-medium text-primary underline">
+            moving companies in Lagos
+          </Link>{" "}
+          and{" "}
+          <Link to="/moving-company-nigeria" className="font-medium text-primary underline">
+            interstate moving across Nigeria
+          </Link>
+          .
+        </p>
       </section>
 
       <CtaBand />
