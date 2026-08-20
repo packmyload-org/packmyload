@@ -31,7 +31,7 @@ export function CtaBand({
             <Button
               asChild
               size="lg"
-              className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
+              className="rounded-full bg-accent text-white hover:bg-accent/90"
             >
               <Link to="/book">
                 Book your move
