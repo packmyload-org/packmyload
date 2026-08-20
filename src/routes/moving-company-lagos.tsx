@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { IMG,
-  SITE_URL, services, site } from "@/lib/site-data";
+  SITE_URL, services, site, abs } from "@/lib/site-data";
 import { chooseChecklist, costFactors, lagosAreas, lagosFaqs } from "@/lib/seo-data";
 
 const title = "Moving Company in Lagos | Insured Home & Office Movers";
@@ -30,8 +30,11 @@ export const Route = createFileRoute("/moving-company-lagos")({
       { property: "og:description", content: description },
       { property: "og:type", content: "article" },
       { property: "og:url", content: canonical },
-      { property: "og:image", content: ogImage },
-      { name: "twitter:image", content: ogImage },
+      { property: "og:image", content: abs(ogImage) },
+      { name: "twitter:image", content: abs(ogImage) },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: canonical }],
     scripts: [

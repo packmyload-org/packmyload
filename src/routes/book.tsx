@@ -4,7 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { QuoteBar } from "@/components/site/QuoteBar";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { steps } from "@/lib/site-data";
+import { steps, abs } from "@/lib/site-data";
 
 const title = "Book a Move | Packmyload";
 const description =
@@ -17,6 +17,13 @@ export const Route = createFileRoute("/book")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.packmyload.com/book" },
+      { property: "og:image", content: abs("/images/coverge-pack.webp") },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: abs("/images/coverge-pack.webp") },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/book" }],
   }),

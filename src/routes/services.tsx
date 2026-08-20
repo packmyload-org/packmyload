@@ -3,7 +3,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { ServiceCard } from "@/components/site/ServiceCard";
-import { services } from "@/lib/site-data";
+import { services, abs } from "@/lib/site-data";
 
 const ogImage = services[0]?.image ?? "";
 
@@ -18,8 +18,13 @@ export const Route = createFileRoute("/services")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
-      { property: "og:image", content: ogImage },
-      { name: "twitter:image", content: ogImage },
+      { property: "og:image", content: abs(ogImage) },
+      { name: "twitter:image", content: abs(ogImage) },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.packmyload.com/services" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/services" }],
   }),

@@ -40,13 +40,18 @@ export const Route = createFileRoute("/best-moving-company-near-me")({
         children: JSON.stringify([
           {
             "@context": "https://schema.org",
-            "@type": "MovingCompany",
+            "@type": ["LocalBusiness", "MovingCompany"],
             "@id": "https://www.packmyload.com/#organization",
             name: site.name,
             description,
             url: canonical,
+            image: ogImage,
+            logo: `${SITE_URL}/logo.svg`,
             telephone: site.phone,
             email: site.email,
+            priceRange: "₦₦",
+            currenciesAccepted: "NGN",
+            paymentAccepted: "Cash, Bank transfer, Card",
             address: {
               "@type": "PostalAddress",
               streetAddress: "2 Hundeyin St, Ogudu",
@@ -55,6 +60,16 @@ export const Route = createFileRoute("/best-moving-company-near-me")({
               postalCode: "105102",
               addressCountry: "NG",
             },
+            geo: { "@type": "GeoCoordinates", latitude: 6.5833, longitude: 3.3833 },
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                opens: "08:00",
+                closes: "18:00",
+              },
+            ],
+            sameAs: Object.values(site.socials),
             areaServed: [
               ...lagosAreas.map((area) => ({ "@type": "Place", name: `${area}, Lagos` })),
               { "@type": "City", name: "Abuja" },
@@ -69,10 +84,31 @@ export const Route = createFileRoute("/best-moving-company-near-me")({
                   "@type": "Service",
                   name: service.title,
                   description: service.short,
+                  url: `${SITE_URL}${service.path}`,
                 },
               })),
             },
           },
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "@id": `${canonical}#service`,
+            name: "Local moving services near you",
+            serviceType: "Moving company",
+            description,
+            provider: { "@id": "https://www.packmyload.com/#organization" },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "City", name: "Abuja" },
+            ],
+            hoursAvailable: {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "08:00",
+              closes: "18:00",
+            },
+          },
+
           {
             "@context": "https://schema.org",
             "@type": "FAQPage",
@@ -180,6 +216,10 @@ function NearMePage() {
           including {nigeriaRoutes.slice(0, 4).join(", ")}. Staying local?{" "}
           <Link to="/moving-company-lagos" className="font-medium text-primary underline">
             See how Lagos moves are priced
+          </Link>{" "}
+          or open your own neighbourhood page from{" "}
+          <Link to="/movers" className="font-medium text-primary underline">
+            our list of service areas
           </Link>
           .
         </p>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { areas } from "@/lib/areas-data";
 
 const BASE_URL = "https://www.packmyload.com";
 
@@ -31,6 +32,12 @@ const entries: SitemapEntry[] = [
   { path: "/international-relocations", changefreq: "monthly", priority: "0.7" },
   { path: "/cleaning", changefreq: "monthly", priority: "0.7" },
   { path: "/storage", changefreq: "monthly", priority: "0.7" },
+  { path: "/movers", changefreq: "monthly", priority: "0.8" },
+  ...areas.map((area) => ({
+    path: `/movers/${area.slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.8",
+  })),
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({

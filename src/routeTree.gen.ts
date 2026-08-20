@@ -24,6 +24,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as HomeMovesRouteImport } from './routes/home-moves'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as InternationalRelocationsRouteImport } from './routes/international-relocations'
+import { Route as MoversRouteImport } from './routes/movers'
 import { Route as MovingCompanyLagosRouteImport } from './routes/moving-company-lagos'
 import { Route as MovingCompanyNigeriaRouteImport } from './routes/moving-company-nigeria'
 import { Route as OfficeMovesRouteImport } from './routes/office-moves'
@@ -33,6 +34,9 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StorageRouteImport } from './routes/storage'
 import { Route as StoreDeliveryRouteImport } from './routes/store-delivery'
 import { Route as WeddingHandlingRouteImport } from './routes/wedding-handling'
+import { Route as MoversIndexRouteImport } from './routes/movers.index'
+import { Route as MoversAreaRouteImport } from './routes/movers.$area'
+import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 
 const IndexRoute = IndexRouteImport.update({
@@ -110,6 +114,11 @@ const InternationalRelocationsRoute =
     path: '/international-relocations',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MoversRoute = MoversRouteImport.update({
+  id: '/movers',
+  path: '/movers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MovingCompanyLagosRoute = MovingCompanyLagosRouteImport.update({
   id: '/moving-company-lagos',
   path: '/moving-company-lagos',
@@ -155,6 +164,22 @@ const WeddingHandlingRoute = WeddingHandlingRouteImport.update({
   path: '/wedding-handling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoversIndexRoute = MoversIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MoversRoute,
+} as any)
+const MoversAreaRoute = MoversAreaRouteImport.update({
+  id: '/$area',
+  path: '/$area',
+  getParentRoute: () => MoversRoute,
+} as any)
+const AuthenticatedAdminBookingsRoute =
+  AuthenticatedAdminBookingsRouteImport.update({
+    id: '/admin/bookings',
+    path: '/admin/bookings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   id: '/admin/leads',
   path: '/admin/leads',
@@ -176,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
+  '/movers': typeof MoversRouteWithChildren
   '/moving-company-lagos': typeof MovingCompanyLagosRoute
   '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
@@ -185,6 +211,9 @@ export interface FileRoutesByFullPath {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/movers/$area': typeof MoversAreaRoute
+  '/movers/': typeof MoversIndexRoute
+  '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
 }
 export interface FileRoutesByTo {
@@ -211,6 +240,9 @@ export interface FileRoutesByTo {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/movers/$area': typeof MoversAreaRoute
+  '/movers': typeof MoversIndexRoute
+  '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
 }
 export interface FileRoutesById {
@@ -230,6 +262,7 @@ export interface FileRoutesById {
   '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
+  '/movers': typeof MoversRouteWithChildren
   '/moving-company-lagos': typeof MovingCompanyLagosRoute
   '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
@@ -239,6 +272,9 @@ export interface FileRoutesById {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
+  '/movers/$area': typeof MoversAreaRoute
+  '/movers/': typeof MoversIndexRoute
+  '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
 }
 export interface FileRouteTypes {
@@ -258,6 +294,7 @@ export interface FileRouteTypes {
     | '/home-moves'
     | '/hub'
     | '/international-relocations'
+    | '/movers'
     | '/moving-company-lagos'
     | '/moving-company-nigeria'
     | '/office-moves'
@@ -267,6 +304,9 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/movers/$area'
+    | '/movers/'
+    | '/admin/bookings'
     | '/admin/leads'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -293,6 +333,9 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/movers/$area'
+    | '/movers'
+    | '/admin/bookings'
     | '/admin/leads'
   id:
     | '__root__'
@@ -311,6 +354,7 @@ export interface FileRouteTypes {
     | '/home-moves'
     | '/hub'
     | '/international-relocations'
+    | '/movers'
     | '/moving-company-lagos'
     | '/moving-company-nigeria'
     | '/office-moves'
@@ -320,6 +364,9 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
+    | '/movers/$area'
+    | '/movers/'
+    | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/leads'
   fileRoutesById: FileRoutesById
 }
@@ -339,6 +386,7 @@ export interface RootRouteChildren {
   HomeMovesRoute: typeof HomeMovesRoute
   HubRoute: typeof HubRoute
   InternationalRelocationsRoute: typeof InternationalRelocationsRoute
+  MoversRoute: typeof MoversRouteWithChildren
   MovingCompanyLagosRoute: typeof MovingCompanyLagosRoute
   MovingCompanyNigeriaRoute: typeof MovingCompanyNigeriaRoute
   OfficeMovesRoute: typeof OfficeMovesRoute
@@ -457,6 +505,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternationalRelocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movers': {
+      id: '/movers'
+      path: '/movers'
+      fullPath: '/movers'
+      preLoaderRoute: typeof MoversRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/moving-company-lagos': {
       id: '/moving-company-lagos'
       path: '/moving-company-lagos'
@@ -520,6 +575,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeddingHandlingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movers/': {
+      id: '/movers/'
+      path: '/'
+      fullPath: '/movers/'
+      preLoaderRoute: typeof MoversIndexRouteImport
+      parentRoute: typeof MoversRoute
+    }
+    '/movers/$area': {
+      id: '/movers/$area'
+      path: '/$area'
+      fullPath: '/movers/$area'
+      preLoaderRoute: typeof MoversAreaRouteImport
+      parentRoute: typeof MoversRoute
+    }
+    '/_authenticated/admin/bookings': {
+      id: '/_authenticated/admin/bookings'
+      path: '/admin/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
       path: '/admin/leads'
@@ -531,15 +607,30 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+interface MoversRouteChildren {
+  MoversAreaRoute: typeof MoversAreaRoute
+  MoversIndexRoute: typeof MoversIndexRoute
+}
+
+const MoversRouteChildren: MoversRouteChildren = {
+  MoversAreaRoute: MoversAreaRoute,
+  MoversIndexRoute: MoversIndexRoute,
+}
+
+const MoversRouteWithChildren =
+  MoversRoute._addFileChildren(MoversRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -557,6 +648,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeMovesRoute: HomeMovesRoute,
   HubRoute: HubRoute,
   InternationalRelocationsRoute: InternationalRelocationsRoute,
+  MoversRoute: MoversRouteWithChildren,
   MovingCompanyLagosRoute: MovingCompanyLagosRoute,
   MovingCompanyNigeriaRoute: MovingCompanyNigeriaRoute,
   OfficeMovesRoute: OfficeMovesRoute,
