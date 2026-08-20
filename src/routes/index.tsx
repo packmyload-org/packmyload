@@ -178,9 +178,8 @@ function Home() {
                 <li
                   key={image.src}
                   className={
-                    index === 4
-                      ? "col-span-2 rounded-3xl border border-primary-foreground/15 bg-primary-foreground/10 p-3 backdrop-blur-sm sm:col-span-1"
-                      : "rounded-3xl border border-primary-foreground/15 bg-primary-foreground/10 p-3 backdrop-blur-sm"
+                    "overflow-hidden rounded-3xl bg-card shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] ring-1 ring-primary-foreground/15" +
+                    (index === 4 ? " col-span-2 sm:col-span-1" : "")
                   }
                 >
                   <img
@@ -191,12 +190,13 @@ function Home() {
                     loading="eager"
                     decoding={index === 0 ? "sync" : "async"}
                     {...(index === 0 ? { fetchPriority: "high" as const } : {})}
-                    className="mx-auto h-32 w-auto object-contain sm:h-36"
-                    style={{ aspectRatio: "420 / 320" }}
+                    className="block h-full w-full bg-card object-cover"
+                    style={{ aspectRatio: "4 / 3" }}
                   />
                 </li>
               ))}
             </ul>
+
           </Reveal>
         </div>
       </section>
