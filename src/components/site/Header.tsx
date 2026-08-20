@@ -89,14 +89,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${site.phone}`}
-            className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground md:flex"
-          >
-            <Phone className="size-4 text-accent" aria-hidden="true" />
-            {site.phoneDisplay}
-          </a>
-          <Button asChild size="lg" className="hidden rounded-full sm:inline-flex">
+          <Button asChild size="lg" className="rounded-full">
             <Link to="/book">Book now</Link>
           </Button>
           <button
