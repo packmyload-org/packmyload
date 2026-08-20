@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -52,7 +52,6 @@ export const Route = createFileRoute("/_authenticated/admin/leads")({
 });
 
 function LeadsAdmin() {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [search, setSearch] = useState("");
@@ -95,25 +94,14 @@ function LeadsAdmin() {
     return matchesStatus && matchesSearch;
   });
 
-  async function signOut() {
-    await supabase.auth.signOut();
-    queryClient.clear();
-    navigate({ to: "/auth" });
-  }
-
   return (
-    <section className="container-page py-12">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-semibold text-foreground">Lead inquiries</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Every request captured by the WhatsApp assistant. Update the status as your team works
-            each lead.
-          </p>
-        </div>
-        <Button variant="outline" className="rounded-full" onClick={signOut}>
-          Sign out
-        </Button>
+    <section className="container-page py-10">
+      <div>
+        <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">Lead inquiries</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Every request captured by the WhatsApp assistant. Update the status as your team works each
+          lead.
+        </p>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-3">
