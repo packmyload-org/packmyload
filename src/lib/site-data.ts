@@ -12,6 +12,8 @@ export const site = {
     facebook: "https://www.facebook.com/packmyload",
     twitter: "https://twitter.com/packmyload",
     linkedin: "https://www.linkedin.com/company/packmyload-com/about/",
+    threads: "https://www.threads.com/@packmyload",
+    youtube: "#",
   },
 };
 
