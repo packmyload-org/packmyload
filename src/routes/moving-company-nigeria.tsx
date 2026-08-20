@@ -19,7 +19,7 @@ const title = "Moving Company in Nigeria | Interstate & International Movers";
 const description =
   "Packmyload moves homes, offices and vehicles across Nigeria — Lagos to Abuja, Port Harcourt, Ibadan and every state — plus international relocations, all insured in transit.";
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
-const canonical = "/moving-company-nigeria";
+const canonical = "https://www.packmyload.com/moving-company-nigeria";
 
 export const Route = createFileRoute("/moving-company-nigeria")({
   head: () => ({
@@ -80,7 +80,7 @@ export const Route = createFileRoute("/moving-company-nigeria")({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.packmyload.com/" },
               {
                 "@type": "ListItem",
                 position: 2,

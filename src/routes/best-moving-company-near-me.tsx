@@ -18,7 +18,7 @@ const title = "Best Moving Company Near Me | Packmyload Lagos & Abuja";
 const description =
   "Looking for the best moving company near you in Lagos or Abuja? Packmyload sends insured, vetted movers to your street — on-demand in as little as 30 minutes, or booked up to 30 days ahead.";
 const ogImage = `${SITE_URL}/images/coverge-pack.webp`;
-const canonical = "/best-moving-company-near-me";
+const canonical = "https://www.packmyload.com/best-moving-company-near-me";
 
 export const Route = createFileRoute("/best-moving-company-near-me")({
   head: () => ({
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/best-moving-company-near-me")({
             "@id": "https://www.packmyload.com/#organization",
             name: site.name,
             description,
-            url: `https://www.packmyload.com${canonical}`,
+            url: canonical,
             telephone: site.phone,
             email: site.email,
             address: {
@@ -86,7 +86,7 @@ export const Route = createFileRoute("/best-moving-company-near-me")({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.packmyload.com/" },
               { "@type": "ListItem", position: 2, name: "Best moving company near me", item: canonical },
             ],
           },

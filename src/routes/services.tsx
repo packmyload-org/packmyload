@@ -21,7 +21,7 @@ export const Route = createFileRoute("/services")({
       { property: "og:image", content: ogImage },
       { name: "twitter:image", content: ogImage },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: "https://www.packmyload.com/services" }],
   }),
   component: ServicesPage,
 });

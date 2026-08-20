@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://www.packmyload.com/contact" }],
     scripts: [
       {
         type: "application/ld+json",

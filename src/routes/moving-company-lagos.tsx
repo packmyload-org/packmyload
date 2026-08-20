@@ -19,7 +19,7 @@ const title = "Moving Company in Lagos | Insured Home & Office Movers";
 const description =
   "Packmyload is a Lagos moving company offering insured home and office relocations, packing, storage and junk removal across Lekki, Ikoyi, Ikeja, Yaba, Ogudu, Alimosho and Ikorodu.";
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
-const canonical = "/moving-company-lagos";
+const canonical = "https://www.packmyload.com/moving-company-lagos";
 
 export const Route = createFileRoute("/moving-company-lagos")({
   head: () => ({
@@ -80,7 +80,7 @@ export const Route = createFileRoute("/moving-company-lagos")({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.packmyload.com/" },
               { "@type": "ListItem", position: 2, name: "Moving company in Lagos", item: canonical },
             ],
           },
