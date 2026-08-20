@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AlignRight, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { services, site } from "@/lib/site-data";
+import { services } from "@/lib/site-data";
 
 const mainNav = [
   { label: "Gallery", to: "/gallery" },
