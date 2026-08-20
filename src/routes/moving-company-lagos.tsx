@@ -188,8 +188,13 @@ function LagosPage() {
           <Link to="/moving-company-nigeria" className="font-medium text-primary underline">
             See our interstate moving service across Nigeria
           </Link>
+          . Searching for movers on your street?{" "}
+          <Link to="/best-moving-company-near-me" className="font-medium text-primary underline">
+            See how to pick the best moving company near you
+          </Link>
           .
         </p>
+
       </section>
 
       <section className="container-page pb-16 sm:pb-20">

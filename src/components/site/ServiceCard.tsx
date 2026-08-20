@@ -15,6 +15,8 @@ export function ServiceCard({ service, eager = false }: { service: Service; eage
           width={800}
           height={500}
           loading={eager ? "eager" : "lazy"}
+          decoding="async"
+          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
           className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>

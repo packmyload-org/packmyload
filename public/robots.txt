@@ -50,4 +50,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://pack-my-magic.lovable.app/sitemap.xml
+Sitemap: https://www.packmyload.com/sitemap.xml

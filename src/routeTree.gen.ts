@@ -16,6 +16,7 @@ import { Route as JunkMovesRouteImport } from './routes/Junk-moves'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BestMovingCompanyNearMeRouteImport } from './routes/best-moving-company-near-me'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as CleaningRouteImport } from './routes/cleaning'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -66,6 +67,11 @@ const AboutRoute = AboutRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestMovingCompanyNearMeRoute = BestMovingCompanyNearMeRouteImport.update({
+  id: '/best-moving-company-near-me',
+  path: '/best-moving-company-near-me',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookRoute = BookRouteImport.update({
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/best-moving-company-near-me': typeof BestMovingCompanyNearMeRoute
   '/book': typeof BookRoute
   '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/best-moving-company-near-me': typeof BestMovingCompanyNearMeRoute
   '/book': typeof BookRoute
   '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
@@ -214,6 +222,7 @@ export interface FileRoutesById {
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/best-moving-company-near-me': typeof BestMovingCompanyNearMeRoute
   '/book': typeof BookRoute
   '/cleaning': typeof CleaningRoute
   '/contact': typeof ContactRoute
@@ -241,6 +250,7 @@ export interface FileRouteTypes {
     | '/Junk-moves'
     | '/about'
     | '/auth'
+    | '/best-moving-company-near-me'
     | '/book'
     | '/cleaning'
     | '/contact'
@@ -266,6 +276,7 @@ export interface FileRouteTypes {
     | '/Junk-moves'
     | '/about'
     | '/auth'
+    | '/best-moving-company-near-me'
     | '/book'
     | '/cleaning'
     | '/contact'
@@ -292,6 +303,7 @@ export interface FileRouteTypes {
     | '/Junk-moves'
     | '/about'
     | '/auth'
+    | '/best-moving-company-near-me'
     | '/book'
     | '/cleaning'
     | '/contact'
@@ -319,6 +331,7 @@ export interface RootRouteChildren {
   JunkMovesRoute: typeof JunkMovesRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  BestMovingCompanyNearMeRoute: typeof BestMovingCompanyNearMeRoute
   BookRoute: typeof BookRoute
   CleaningRoute: typeof CleaningRoute
   ContactRoute: typeof ContactRoute
@@ -386,6 +399,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-moving-company-near-me': {
+      id: '/best-moving-company-near-me'
+      path: '/best-moving-company-near-me'
+      fullPath: '/best-moving-company-near-me'
+      preLoaderRoute: typeof BestMovingCompanyNearMeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book': {
@@ -529,6 +549,7 @@ const rootRouteChildren: RootRouteChildren = {
   JunkMovesRoute: JunkMovesRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  BestMovingCompanyNearMeRoute: BestMovingCompanyNearMeRoute,
   BookRoute: BookRoute,
   CleaningRoute: CleaningRoute,
   ContactRoute: ContactRoute,
