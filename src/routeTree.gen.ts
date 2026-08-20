@@ -37,6 +37,7 @@ import { Route as WeddingHandlingRouteImport } from './routes/wedding-handling'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as MoversIndexRouteImport } from './routes/movers.index'
 import { Route as MoversAreaRouteImport } from './routes/movers.$area'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 
@@ -180,6 +181,11 @@ const MoversAreaRoute = MoversAreaRouteImport.update({
   path: '/$area',
   getParentRoute: () => MoversRoute,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedAdminBookingsRoute =
   AuthenticatedAdminBookingsRouteImport.update({
     id: '/bookings',
@@ -222,6 +228,7 @@ export interface FileRoutesByFullPath {
   '/movers/': typeof MoversIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -247,11 +254,11 @@ export interface FileRoutesByTo {
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
-  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/movers/$area': typeof MoversAreaRoute
   '/movers': typeof MoversIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -285,6 +292,7 @@ export interface FileRoutesById {
   '/movers/': typeof MoversIndexRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -318,6 +326,7 @@ export interface FileRouteTypes {
     | '/movers/'
     | '/admin/bookings'
     | '/admin/leads'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -343,11 +352,11 @@ export interface FileRouteTypes {
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
-    | '/admin'
     | '/movers/$area'
     | '/movers'
     | '/admin/bookings'
     | '/admin/leads'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -380,6 +389,7 @@ export interface FileRouteTypes {
     | '/movers/'
     | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/leads'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -608,6 +618,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoversAreaRouteImport
       parentRoute: typeof MoversRoute
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/bookings': {
       id: '/_authenticated/admin/bookings'
       path: '/bookings'
@@ -628,11 +645,13 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
 const AuthenticatedAdminRouteWithChildren =
