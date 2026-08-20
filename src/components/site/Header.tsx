@@ -21,11 +21,11 @@ export function Header() {
       <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" className="inline-flex items-center" onClick={() => setOpen(false)}>
           <img
-            src="/logo.png"
+            src="/logo-white.svg"
             alt="Packmyload"
             width={145}
             height={50}
-            className="h-10 w-auto brightness-0 invert"
+            className="h-10 w-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.18)]"
           />
         </Link>
 
