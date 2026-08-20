@@ -9,6 +9,20 @@ const WHATSAPP_NUMBER = "2347007225776";
 const GREETING = "Hi PackMyLoad, I'd like to get a quote for a move.";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(GREETING)}`;
 
+// WhatsApp refuses to be framed (ERR_BLOCKED_BY_RESPONSE), so always break out
+// of the current frame into a real top-level tab.
+function openWhatsApp() {
+  const opened = window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer");
+  if (!opened) {
+    try {
+      (window.top ?? window).location.href = WHATSAPP_LINK;
+    } catch {
+      window.location.href = WHATSAPP_LINK;
+    }
+  }
+}
+
+
 type FieldKey =
   | "full_name"
   | "email"
@@ -201,15 +215,14 @@ export function WhatsAppChat() {
                 your chat with your quote request already typed out.
               </p>
               <Button
-                asChild
                 size="lg"
                 className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
+                onClick={openWhatsApp}
               >
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="size-4" aria-hidden="true" />
-                  Chat on WhatsApp
-                </a>
+                <MessageCircle className="size-4" aria-hidden="true" />
+                Chat on WhatsApp
               </Button>
+
             </div>
           ) : (
             <>
