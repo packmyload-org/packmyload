@@ -44,11 +44,11 @@ export function Footer() {
         <div>
           <Link to="/" className="inline-flex items-center">
             <img
-              src="/logo.png"
+              src="/logo-white.svg"
               alt="Packmyload"
               width={145}
               height={50}
-              className="h-9 w-auto brightness-0 invert"
+              className="h-9 w-auto"
             />
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/70">
