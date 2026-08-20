@@ -5,7 +5,14 @@ const GATEWAY_URL = "https://connector-gateway.lovable.dev/mapbox";
 
 type Suggestion = { id: string; label: string; lng: number; lat: number };
 
-async function mapboxFetch(path: string) {
+type GeoResponse = {
+  features?: Array<{
+    id?: string;
+    properties?: { full_address?: string; place_formatted?: string; name?: string; coordinates?: { longitude: number; latitude: number } };
+  }>;
+};
+
+async function mapboxFetch(path: string): Promise<GeoResponse | null> {
   const lovableKey = process.env["LOVABLE_API_KEY"];
   const connectionKey = process.env["MAPBOX_API_KEY"];
   if (!lovableKey || !connectionKey) return null;
@@ -22,21 +29,24 @@ async function mapboxFetch(path: string) {
     console.error(`Mapbox gateway failed [${response.status}]: ${body}`);
     return null;
   }
-  return (await response.json()) as {
-    features?: Array<{ id?: string; place_name?: string; center?: [number, number] }>;
-  };
+  return (await response.json()) as GeoResponse;
 }
 
-function toSuggestions(data: Awaited<ReturnType<typeof mapboxFetch>>): Suggestion[] {
+function toSuggestions(data: GeoResponse | null): Suggestion[] {
   if (!data?.features) return [];
   return data.features
-    .filter((f) => f.place_name && Array.isArray(f.center))
-    .map((f, index) => ({
-      id: f.id ?? `feature-${index}`,
-      label: f.place_name!,
-      lng: f.center![0],
-      lat: f.center![1],
-    }));
+    .map((feature, index) => {
+      const props = feature.properties ?? {};
+      const label = props.full_address ?? (props.name ? `${props.name}${props.place_formatted ? `, ${props.place_formatted}` : ""}` : null);
+      if (!label || !props.coordinates) return null;
+      return {
+        id: feature.id ?? `feature-${index}`,
+        label,
+        lng: props.coordinates.longitude,
+        lat: props.coordinates.latitude,
+      };
+    })
+    .filter((item): item is Suggestion => item !== null);
 }
 
 export const searchAddress = createServerFn({ method: "GET" })
@@ -44,7 +54,7 @@ export const searchAddress = createServerFn({ method: "GET" })
   .handler(async ({ data }) => {
     const query = encodeURIComponent(data.query);
     const result = await mapboxFetch(
-      `/geocoding/v5/mapbox.places/${query}.json?limit=6&country=ng&language=en&types=address,place,locality,neighborhood,poi,postcode,district`,
+      `/search/geocode/v6/forward?q=${query}&limit=6&country=ng&language=en&proximity=3.3792,6.5244`,
     );
     return { suggestions: toSuggestions(result), available: result !== null };
   });
@@ -55,7 +65,7 @@ export const reverseGeocode = createServerFn({ method: "GET" })
   )
   .handler(async ({ data }) => {
     const result = await mapboxFetch(
-      `/geocoding/v5/mapbox.places/${data.lng},${data.lat}.json?limit=1&language=en`,
+      `/search/geocode/v6/reverse?longitude=${data.lng}&latitude=${data.lat}&limit=1&language=en`,
     );
     const suggestions = toSuggestions(result);
     return { address: suggestions[0]?.label ?? null, available: result !== null };
