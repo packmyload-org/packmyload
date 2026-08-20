@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CalendarDays, Search } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { AddressField } from "@/components/site/AddressField";
