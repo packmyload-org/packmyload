@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
 import heroVideo from "@/assets/hero-move.mp4.asset.json";
@@ -134,14 +135,8 @@ function Home() {
   useEffect(() => {
     // Defer the decorative hero video until the page is interactive so it
     // never competes with LCP on mobile networks.
-    const idle =
-      "requestIdleCallback" in window
-        ? window.requestIdleCallback(() => setShowVideo(true), { timeout: 3000 })
-        : window.setTimeout(() => setShowVideo(true), 1500);
-    return () => {
-      if ("cancelIdleCallback" in window) window.cancelIdleCallback(idle as number);
-      else window.clearTimeout(idle as number);
-    };
+    const timer = window.setTimeout(() => setShowVideo(true), 1500);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
