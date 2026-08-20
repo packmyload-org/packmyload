@@ -11,7 +11,7 @@ export default function MapPicker({
   onConfirm,
   onResolve,
 }: {
-  initial?: { lng: number; lat: number };
+  initial?: { lng: number; lat: number } | undefined;
   onConfirm: (value: { lng: number; lat: number; address: string | null }) => void;
   onResolve: (coords: { lng: number; lat: number }) => Promise<string | null>;
 }) {
