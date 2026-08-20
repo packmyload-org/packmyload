@@ -22,6 +22,7 @@ import { Route as HomeMovesRouteImport } from './routes/home-moves'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as InternationalRelocationsRouteImport } from './routes/international-relocations'
 import { Route as MovingCompanyLagosRouteImport } from './routes/moving-company-lagos'
+import { Route as MovingCompanyNigeriaRouteImport } from './routes/moving-company-nigeria'
 import { Route as OfficeMovesRouteImport } from './routes/office-moves'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -96,6 +97,11 @@ const MovingCompanyLagosRoute = MovingCompanyLagosRouteImport.update({
   path: '/moving-company-lagos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovingCompanyNigeriaRoute = MovingCompanyNigeriaRouteImport.update({
+  id: '/moving-company-nigeria',
+  path: '/moving-company-nigeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OfficeMovesRoute = OfficeMovesRouteImport.update({
   id: '/office-moves',
   path: '/office-moves',
@@ -146,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
   '/moving-company-lagos': typeof MovingCompanyLagosRoute
+  '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
   '/moving-company-lagos': typeof MovingCompanyLagosRoute
+  '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
   '/moving-company-lagos': typeof MovingCompanyLagosRoute
+  '/moving-company-nigeria': typeof MovingCompanyNigeriaRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/hub'
     | '/international-relocations'
     | '/moving-company-lagos'
+    | '/moving-company-nigeria'
     | '/office-moves'
     | '/partner'
     | '/services'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/hub'
     | '/international-relocations'
     | '/moving-company-lagos'
+    | '/moving-company-nigeria'
     | '/office-moves'
     | '/partner'
     | '/services'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/hub'
     | '/international-relocations'
     | '/moving-company-lagos'
+    | '/moving-company-nigeria'
     | '/office-moves'
     | '/partner'
     | '/services'
@@ -282,6 +294,7 @@ export interface RootRouteChildren {
   HubRoute: typeof HubRoute
   InternationalRelocationsRoute: typeof InternationalRelocationsRoute
   MovingCompanyLagosRoute: typeof MovingCompanyLagosRoute
+  MovingCompanyNigeriaRoute: typeof MovingCompanyNigeriaRoute
   OfficeMovesRoute: typeof OfficeMovesRoute
   PartnerRoute: typeof PartnerRoute
   ServicesRoute: typeof ServicesRoute
@@ -384,6 +397,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MovingCompanyLagosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/moving-company-nigeria': {
+      id: '/moving-company-nigeria'
+      path: '/moving-company-nigeria'
+      fullPath: '/moving-company-nigeria'
+      preLoaderRoute: typeof MovingCompanyNigeriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/office-moves': {
       id: '/office-moves'
       path: '/office-moves'
@@ -450,6 +470,7 @@ const rootRouteChildren: RootRouteChildren = {
   HubRoute: HubRoute,
   InternationalRelocationsRoute: InternationalRelocationsRoute,
   MovingCompanyLagosRoute: MovingCompanyLagosRoute,
+  MovingCompanyNigeriaRoute: MovingCompanyNigeriaRoute,
   OfficeMovesRoute: OfficeMovesRoute,
   PartnerRoute: PartnerRoute,
   ServicesRoute: ServicesRoute,
