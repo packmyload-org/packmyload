@@ -32,6 +32,8 @@ export function AddressField({
 
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [open, setOpen] = useState(false);
+  const [searchAvailable, setSearchAvailable] = useState(true);
+
   const [loading, setLoading] = useState(false);
   const [locating, setLocating] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
@@ -55,15 +57,18 @@ export function AddressField({
       search({ data: { query } })
         .then((result) => {
           if (!active) return;
+          setSearchAvailable(result.available);
           setSuggestions(result.suggestions);
           setOpen(result.suggestions.length > 0);
         })
         .catch(() => {
           if (active) {
+            setSearchAvailable(false);
             setSuggestions([]);
             setOpen(false);
           }
         })
+
         .finally(() => {
           if (active) setLoading(false);
         });
@@ -161,6 +166,12 @@ export function AddressField({
           <MapIcon className="size-4" aria-hidden="true" />
         </button>
       </div>
+
+      {!searchAvailable && value.trim().length >= 3 ? (
+        <span className="pointer-events-none absolute top-full left-4 mt-1 text-[0.68rem] text-muted-foreground">
+          Suggestions unavailable — type the full address.
+        </span>
+      ) : null}
 
       {open && suggestions.length > 0 ? (
         <ul className="absolute top-full left-0 z-50 mt-2 w-full max-w-md overflow-hidden rounded-2xl border border-border bg-popover text-left shadow-lift">
