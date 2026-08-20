@@ -18,14 +18,20 @@ export type Database = {
         Row: {
           arrival_window: string | null
           created_at: string
-          destination_address: string
+          deposit_amount: number | null
+          destination_address: string | null
           destination_floor: string | null
           email: string | null
+          estimate_max: number | null
+          estimate_min: number | null
           full_name: string
           id: string
+          is_quick_request: boolean
           move_size: string | null
           moving_date: string | null
           notes: string | null
+          payment_reference: string | null
+          payment_status: string
           phone: string
           photo_paths: string[]
           pickup_address: string
@@ -37,14 +43,20 @@ export type Database = {
         Insert: {
           arrival_window?: string | null
           created_at?: string
-          destination_address: string
+          deposit_amount?: number | null
+          destination_address?: string | null
           destination_floor?: string | null
           email?: string | null
+          estimate_max?: number | null
+          estimate_min?: number | null
           full_name: string
           id?: string
+          is_quick_request?: boolean
           move_size?: string | null
           moving_date?: string | null
           notes?: string | null
+          payment_reference?: string | null
+          payment_status?: string
           phone: string
           photo_paths?: string[]
           pickup_address: string
@@ -56,14 +68,20 @@ export type Database = {
         Update: {
           arrival_window?: string | null
           created_at?: string
-          destination_address?: string
+          deposit_amount?: number | null
+          destination_address?: string | null
           destination_floor?: string | null
           email?: string | null
+          estimate_max?: number | null
+          estimate_min?: number | null
           full_name?: string
           id?: string
+          is_quick_request?: boolean
           move_size?: string | null
           moving_date?: string | null
           notes?: string | null
+          payment_reference?: string | null
+          payment_status?: string
           phone?: string
           photo_paths?: string[]
           pickup_address?: string

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { AddressField } from "@/components/site/AddressField";
+import { todayISO } from "@/lib/booking-rules";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "packmyload:quote-draft";
@@ -13,6 +14,7 @@ type Draft = { from: string; to: string; date: string };
 export function QuoteBar({ className }: { className?: string }) {
   const [draft, setDraft] = useState<Draft>({ from: "", to: "", date: "" });
   const navigate = useNavigate();
+  const minDate = useMemo(() => todayISO(), []);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
@@ -89,6 +91,7 @@ export function QuoteBar({ className }: { className?: string }) {
               id="quote-moving-date"
               type="date"
               value={draft.date}
+              min={minDate}
               onChange={(event) => update({ date: event.target.value })}
               aria-label="Moving date"
               className="w-full rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card appearance-none bg-transparent text-sm font-medium text-foreground outline-none [color-scheme:light_dark] [&::-webkit-calendar-picker-indicator]:hidden placeholder:text-muted-foreground/70"

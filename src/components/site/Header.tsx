@@ -93,7 +93,7 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <a
             href={`tel:${site.phone}`}
             className="hidden items-center gap-2 text-sm font-bold text-primary-foreground/90 transition-colors hover:text-primary-foreground lg:inline-flex"
@@ -104,7 +104,7 @@ export function Header() {
           <span className="hidden h-8 w-px bg-primary-foreground/30 lg:block" />
           <Link
             to="/book"
-            className="inline-flex items-center justify-center rounded-full bg-[oklch(0.72_0.13_235)] px-7 py-3 text-sm font-extrabold tracking-wide uppercase text-white ring-4 ring-primary-foreground/15 transition-transform hover:scale-[1.03]"
+            className="inline-flex shrink-0 items-center justify-center rounded-full bg-[oklch(0.72_0.13_235)] px-4 py-2 text-[0.7rem] font-semibold tracking-wide uppercase text-white ring-2 ring-primary-foreground/15 transition-transform hover:scale-[1.03] sm:px-7 sm:py-3 sm:text-sm sm:font-extrabold sm:ring-4"
           >
             Book now
           </Link>
@@ -113,9 +113,9 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="inline-flex size-10 items-center justify-center rounded-xl border border-primary-foreground/30 text-primary-foreground lg:hidden"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl border border-primary-foreground/30 text-primary-foreground sm:size-10 lg:hidden"
           >
-            {open ? <X className="size-5" /> : <AlignRight className="size-5" />}
+            {open ? <X className="size-4.5" /> : <AlignRight className="size-4.5" />}
           </button>
         </div>
       </div>
