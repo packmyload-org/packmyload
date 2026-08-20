@@ -383,7 +383,7 @@ function Home() {
         </Reveal>
         <Reveal delay={120} className="overflow-hidden rounded-4xl shadow-lift">
           <img
-            src={ogImage}
+            src={`${IMG}/images/Packmyload.com-home-office-relocations.webp`}
             alt="Moving company in Lagos & Abuja Nigeria: happy Packmyload customers"
             width={1200}
             height={800}
