@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { AlignRight, Phone, X, ChevronDown } from "lucide-react";
+import { AlignRight, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { services, site } from "@/lib/site-data";
