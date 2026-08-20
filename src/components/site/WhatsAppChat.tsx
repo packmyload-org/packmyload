@@ -9,6 +9,20 @@ const WHATSAPP_NUMBER = "2347007225776";
 const GREETING = "Hi PackMyLoad, I'd like to get a quote for a move.";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(GREETING)}`;
 
+// WhatsApp refuses to be framed (ERR_BLOCKED_BY_RESPONSE), so always break out
+// of the current frame into a real top-level tab.
+function openWhatsApp() {
+  const opened = window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer");
+  if (!opened) {
+    try {
+      (window.top ?? window).location.href = WHATSAPP_LINK;
+    } catch {
+      window.location.href = WHATSAPP_LINK;
+    }
+  }
+}
+
+
 type FieldKey =
   | "full_name"
   | "email"
