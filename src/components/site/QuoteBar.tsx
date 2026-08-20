@@ -85,7 +85,7 @@ export function QuoteBar({ className }: { className?: string }) {
               type="date"
               value={draft.date}
               onChange={(event) => update({ date: event.target.value })}
-              className="w-full bg-transparent text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/70"
+              className="w-full appearance-none bg-transparent text-sm font-medium text-foreground outline-none [color-scheme:light_dark] [&::-webkit-calendar-picker-indicator]:hidden placeholder:text-muted-foreground/70"
             />
           </div>
         </div>
