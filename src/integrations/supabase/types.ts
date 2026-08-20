@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          arrival_window: string | null
+          created_at: string
+          destination_address: string
+          destination_floor: string | null
+          email: string | null
+          full_name: string
+          id: string
+          move_size: string | null
+          moving_date: string | null
+          notes: string | null
+          phone: string
+          photo_paths: string[]
+          pickup_address: string
+          pickup_floor: string | null
+          reference: string
+          service: string
+          status: string
+        }
+        Insert: {
+          arrival_window?: string | null
+          created_at?: string
+          destination_address: string
+          destination_floor?: string | null
+          email?: string | null
+          full_name: string
+          id?: string
+          move_size?: string | null
+          moving_date?: string | null
+          notes?: string | null
+          phone: string
+          photo_paths?: string[]
+          pickup_address: string
+          pickup_floor?: string | null
+          reference: string
+          service: string
+          status?: string
+        }
+        Update: {
+          arrival_window?: string | null
+          created_at?: string
+          destination_address?: string
+          destination_floor?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          move_size?: string | null
+          moving_date?: string | null
+          notes?: string | null
+          phone?: string
+          photo_paths?: string[]
+          pickup_address?: string
+          pickup_floor?: string | null
+          reference?: string
+          service?: string
+          status?: string
+        }
+        Relationships: []
+      }
       lead_inquiries: {
         Row: {
           created_at: string

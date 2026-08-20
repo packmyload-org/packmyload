@@ -29,6 +29,7 @@ function PinterestIcon({ className }: { className?: string }) {
 const company = [
   { label: "Movers in Lagos", to: "/moving-company-lagos" },
   { label: "Movers near me", to: "/best-moving-company-near-me" },
+  { label: "Service areas", to: "/movers" },
 
   { label: "Movers in Nigeria", to: "/moving-company-nigeria" },
   { label: "About us", to: "/about" },

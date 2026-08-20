@@ -3,7 +3,7 @@ import { Instagram } from "lucide-react";
 import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { galleryImages, site } from "@/lib/site-data";
+import { galleryImages, site, abs } from "@/lib/site-data";
 
 const title = "Gallery | Packmyload Movers Lagos & Abuja";
 const description =
@@ -19,9 +19,11 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.packmyload.com/gallery" },
-      { property: "og:image", content: ogImage },
+      { property: "og:image", content: abs(ogImage) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: ogImage },
+      { name: "twitter:image", content: abs(ogImage) },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/gallery" }],
   }),

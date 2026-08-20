@@ -24,8 +24,7 @@ import {
   services,
   site,
   steps,
-  testimonials,
-} from "@/lib/site-data";
+  testimonials, abs } from "@/lib/site-data";
 import { lagosFaqs, nigeriaFaqs } from "@/lib/seo-data";
 
 const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[2]!, faqs[3]!];
@@ -42,9 +41,13 @@ export const Route = createFileRoute("/")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
-      { property: "og:image", content: ogImage },
-      { name: "twitter:image", content: ogImage },
+      { property: "og:image", content: abs(ogImage) },
+      { name: "twitter:image", content: abs(ogImage) },
       { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [

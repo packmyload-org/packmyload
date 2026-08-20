@@ -406,3 +406,7 @@ export const faqs = [
     a: "We operate across Lagos and Abuja, with interstate moves to any state in Nigeria and international relocations in and out of the country.",
   },
 ];
+
+// Absolute URL helper for social metadata (crawlers require absolute og:image).
+export const abs = (pathOrUrl: string) =>
+  pathOrUrl.startsWith("http") ? pathOrUrl : `${SITE_URL}${pathOrUrl.startsWith("/") ? "" : "/"}${pathOrUrl}`;

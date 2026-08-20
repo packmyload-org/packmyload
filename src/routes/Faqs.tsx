@@ -8,7 +8,7 @@ import {
 import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { faqs } from "@/lib/site-data";
+import { faqs, abs } from "@/lib/site-data";
 
 const title = "Frequently Asked Questions | Packmyload";
 const description =
@@ -21,6 +21,13 @@ export const Route = createFileRoute("/Faqs")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.packmyload.com/Faqs" },
+      { property: "og:image", content: abs("/images/coverge-pack.webp") },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: abs("/images/coverge-pack.webp") },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/Faqs" }],
     scripts: [

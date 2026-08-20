@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { IMG, marketplaceBenefits } from "@/lib/site-data";
+import { IMG, marketplaceBenefits, abs } from "@/lib/site-data";
 
 const title = "Packmyload Hub | Utilities & Home Services After Your Move";
 const description =
@@ -19,8 +19,13 @@ export const Route = createFileRoute("/hub")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
-      { property: "og:image", content: heroImage },
-      { name: "twitter:image", content: heroImage },
+      { property: "og:image", content: abs(heroImage) },
+      { name: "twitter:image", content: abs(heroImage) },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.packmyload.com/hub" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/hub" }],
   }),

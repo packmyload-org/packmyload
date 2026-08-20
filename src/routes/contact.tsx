@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { site } from "@/lib/site-data";
+import { site, abs } from "@/lib/site-data";
 
 const title = "Contact Packmyload | Movers in Lagos & Abuja";
 const description =
@@ -21,6 +21,13 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.packmyload.com/contact" },
+      { property: "og:image", content: abs("/images/coverge-pack.webp") },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: abs("/images/coverge-pack.webp") },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/contact" }],
     scripts: [

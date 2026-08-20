@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,8 @@ type Draft = { from: string; to: string; date: string };
 
 export function QuoteBar({ className }: { className?: string }) {
   const [draft, setDraft] = useState<Draft>({ from: "", to: "", date: "" });
+  const navigate = useNavigate();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
     try {
@@ -38,10 +41,12 @@ export function QuoteBar({ className }: { className?: string }) {
       toast.error("Add both a pick up and a drop off location.");
       return;
     }
-    toast.success("Quote request received", {
-      description: `We'll send your estimate for ${draft.from.trim()} → ${draft.to.trim()}${
-        draft.date ? ` on ${draft.date}` : ""
-      } shortly.`,
+    if (pathname !== "/book") {
+      void navigate({ to: "/book" });
+      return;
+    }
+    toast.success("Locations saved", {
+      description: "Finish the steps below and we'll confirm your quote.",
     });
   };
 

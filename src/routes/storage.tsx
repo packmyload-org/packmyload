@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceDetail } from "@/components/site/ServiceDetail";
-import { services } from "@/lib/site-data";
+import { services, abs } from "@/lib/site-data";
 
 const service = services.find((item) => item.slug === "storage")!;
 
@@ -16,9 +16,11 @@ export const Route = createFileRoute("/storage")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.packmyload.com/storage" },
-      { property: "og:image", content: service.image },
+      { property: "og:image", content: abs(service.image) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: service.image },
+      { name: "twitter:image", content: abs(service.image) },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/storage" }],
   }),

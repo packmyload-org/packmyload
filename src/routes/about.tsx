@@ -4,7 +4,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { features, galleryImages, site, testimonials } from "@/lib/site-data";
+import { features, galleryImages, site, testimonials, abs } from "@/lib/site-data";
 
 const title = "About Packmyload | Moving Company in Lagos & Abuja";
 const description =
@@ -62,9 +62,11 @@ export const Route = createFileRoute("/about")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.packmyload.com/about" },
-      { property: "og:image", content: ogImage },
+      { property: "og:image", content: abs(ogImage) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: ogImage },
+      { name: "twitter:image", content: abs(ogImage) },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: "https://www.packmyload.com/about" }],
   }),

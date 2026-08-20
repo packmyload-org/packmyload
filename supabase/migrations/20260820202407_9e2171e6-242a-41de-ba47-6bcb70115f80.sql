@@ -1,0 +1,1 @@
+DELETE FROM public.bookings WHERE full_name = 'Test Runner';
