@@ -153,3 +153,71 @@ export const nearMeFaqs = [
     a: "Yes. Crews are vetted and trained, and every move is backed by a goods-in-transit insurance policy from the moment your items are in our hands.",
   },
 ];
+
+// Keyword clusters: the real phrases people search for moving services in
+// Nigeria, grouped by intent and mapped to the page that answers each one.
+export const keywordClusters = [
+  {
+    heading: "Movers and packers",
+    terms: [
+      { label: "movers and packers in Lagos", to: "/moving-company-lagos" },
+      { label: "packers and movers near me", to: "/best-moving-company-near-me" },
+      { label: "professional packing service", to: "/home-moves" },
+      { label: "house movers in Lagos", to: "/home-moves" },
+    ],
+  },
+  {
+    heading: "Home and office relocation",
+    terms: [
+      { label: "home relocation services", to: "/home-moves" },
+      { label: "office relocation company", to: "/office-moves" },
+      { label: "corporate movers Lagos", to: "/office-moves" },
+      { label: "furniture moving service", to: "/home-moves" },
+    ],
+  },
+  {
+    heading: "Long distance and interstate",
+    terms: [
+      { label: "interstate movers Nigeria", to: "/moving-company-nigeria" },
+      { label: "Lagos to Abuja movers", to: "/moving-company-nigeria" },
+      { label: "long distance moving company", to: "/moving-company-nigeria" },
+      { label: "car transport across Nigeria", to: "/Interstate-Car-Transport" },
+    ],
+  },
+  {
+    heading: "Around the move",
+    terms: [
+      { label: "storage units in Lagos", to: "/storage" },
+      { label: "junk removal service", to: "/Junk-moves" },
+      { label: "post-move cleaning", to: "/cleaning" },
+      { label: "international relocation from Nigeria", to: "/international-relocations" },
+    ],
+  },
+] as const;
+
+export const whatToExpect = [
+  {
+    title: "1. Tell us what is moving",
+    body: "Share your pick-up and drop-off addresses, home or office size, floor levels and preferred date. Photos of bulky items help us size the crew and vehicle correctly.",
+  },
+  {
+    title: "2. Get an itemised quote",
+    body: "We price on volume, distance, access and the packing level you choose — a written breakdown, not a flat phone number with extras added on moving day.",
+  },
+  {
+    title: "3. Packing day",
+    body: "Vetted, uniformed packers arrive with proper materials, wrap fragile items to a higher specification, dismantle furniture and label everything by room.",
+  },
+  {
+    title: "4. Transit, insured",
+    body: "Your goods are covered by a goods-in-transit policy from the moment they are in our hands, and you stay in contact with the crew for the whole run.",
+  },
+  {
+    title: "5. Set-up at the new address",
+    body: "We reassemble furniture, place boxes by room and unpack if you booked it, then remove packing waste so the space is usable the same day.",
+  },
+  {
+    title: "6. Everything after the move",
+    body: "Packmyload Hub covers cleaning, storage, junk removal, electricity and internet set-up so you are not chasing separate vendors after moving day.",
+  },
+];
