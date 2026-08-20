@@ -18,7 +18,7 @@ import { chooseChecklist, costFactors, lagosAreas, lagosFaqs } from "@/lib/seo-d
 const title = "Moving Company in Lagos | Insured Home & Office Movers";
 const description =
   "Packmyload is a Lagos moving company offering insured home and office relocations, packing, storage and junk removal across Lekki, Ikoyi, Ikeja, Yaba, Ogudu, Alimosho and Ikorodu.";
-const ogImage = `${SITE_URL}/images/home-office-relocations.webp`;
+const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 const canonical = "/moving-company-lagos";
 
 export const Route = createFileRoute("/moving-company-lagos")({

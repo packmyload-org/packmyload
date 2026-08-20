@@ -18,7 +18,7 @@ import { chooseChecklist, costFactors, nigeriaFaqs, nigeriaRoutes } from "@/lib/
 const title = "Moving Company in Nigeria | Interstate & International Movers";
 const description =
   "Packmyload moves homes, offices and vehicles across Nigeria — Lagos to Abuja, Port Harcourt, Ibadan and every state — plus international relocations, all insured in transit.";
-const ogImage = `${SITE_URL}/images/home-office-relocations.webp`;
+const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 const canonical = "/moving-company-nigeria";
 
 export const Route = createFileRoute("/moving-company-nigeria")({

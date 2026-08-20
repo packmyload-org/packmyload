@@ -32,7 +32,7 @@ const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[
 const title = "Packmyload | Moving Company in Lagos & Abuja, Nigeria";
 const description =
   "We make moving seamless. Home and office relocations, storage, delivery, junk removal and utility set-up across Lagos, Abuja and all of Nigeria.";
-const ogImage = `${SITE_URL}/images/home-office-relocations.webp`;
+const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
