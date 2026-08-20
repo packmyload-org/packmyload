@@ -115,7 +115,7 @@ export function BookingWizard() {
         const path = `${ref}/${index + 1}.${ext}`;
         const { error } = await supabase.storage
           .from("booking-photos")
-          .upload(path, file, { contentType: file.type, upsert: true });
+          .upload(path, file, { contentType: file.type, upsert: false });
         if (error) throw error;
         paths.push(path);
       }
