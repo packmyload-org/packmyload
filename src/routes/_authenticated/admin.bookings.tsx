@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
+import { naira } from "@/lib/quote";
 
 const STATUSES = ["Pending", "Contacted", "Quoted", "Scheduled", "Completed", "Cancelled"] as const;
 
@@ -34,6 +35,11 @@ type Booking = {
   photo_paths: string[];
   status: string;
   created_at: string;
+  estimate_min: number | null;
+  estimate_max: number | null;
+  deposit_amount: number | null;
+  payment_status: string;
+  is_quick_request: boolean;
 };
 
 export const Route = createFileRoute("/_authenticated/admin/bookings")({
@@ -55,7 +61,6 @@ export const Route = createFileRoute("/_authenticated/admin/bookings")({
 });
 
 function BookingsAdmin() {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
@@ -114,28 +119,14 @@ function BookingsAdmin() {
     window.open(data.signedUrl, "_blank", "noopener,noreferrer");
   }
 
-  async function signOut() {
-    await supabase.auth.signOut();
-    queryClient.clear();
-    navigate({ to: "/auth" });
-  }
-
   return (
-    <section className="container-page py-12">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-semibold text-foreground">Move bookings</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Every booking submitted through the site wizard, with item photos and access details.{" "}
-            <Link to="/admin/leads" className="font-medium text-primary underline">
-              View chat leads
-            </Link>
-            .
-          </p>
-        </div>
-        <Button variant="outline" className="rounded-full" onClick={signOut}>
-          Sign out
-        </Button>
+    <section className="container-page py-10">
+      <div>
+        <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">Move bookings</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Every booking submitted through the site wizard, with item photos, estimates and access
+          details.
+        </p>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-3">
@@ -189,6 +180,7 @@ function BookingsAdmin() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
+                {booking.is_quick_request ? <Badge variant="outline">Photo request</Badge> : null}
                 <Badge variant="secondary">{booking.status}</Badge>
                 <Select
                   value={booking.status}
@@ -233,6 +225,21 @@ function BookingsAdmin() {
                 <dt className="text-xs tracking-wide uppercase text-muted-foreground">Submitted</dt>
                 <dd className="text-foreground">
                   {new Date(booking.created_at).toLocaleString("en-NG")}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs tracking-wide uppercase text-muted-foreground">Estimate</dt>
+                <dd className="text-foreground">
+                  {booking.estimate_min && booking.estimate_max
+                    ? `${naira(Number(booking.estimate_min))} – ${naira(Number(booking.estimate_max))}`
+                    : "Not calculated"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs tracking-wide uppercase text-muted-foreground">Deposit</dt>
+                <dd className="text-foreground">
+                  {booking.deposit_amount ? naira(Number(booking.deposit_amount)) : "—"} ·{" "}
+                  {booking.payment_status}
                 </dd>
               </div>
               {booking.notes ? (
