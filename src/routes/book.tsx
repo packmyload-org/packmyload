@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CalendarClock, Check, ShieldCheck, Truck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
-import { QuoteBar } from "@/components/site/QuoteBar";
+import { BookingWizard } from "@/components/site/BookingWizard";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { steps, abs } from "@/lib/site-data";
@@ -47,7 +47,7 @@ function BookPage() {
 
       <section className="container-page -mt-10 pb-16 sm:pb-24">
         <Reveal>
-          <QuoteBar />
+          <BookingWizard />
         </Reveal>
         <Reveal delay={100} className="mt-8 flex flex-wrap justify-center gap-4">
           {assurances.map(({ Icon, label }) => (

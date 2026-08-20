@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -152,6 +152,22 @@ export function BookingWizard() {
       setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    try {
+      const stored = window.sessionStorage.getItem("packmyload:quote-draft");
+      if (!stored) return;
+      const draft = JSON.parse(stored) as Partial<Pick<Booking, "from" | "to" | "date">>;
+      setData((prev) => ({
+        ...prev,
+        from: draft.from ?? prev.from,
+        to: draft.to ?? prev.to,
+        date: draft.date ?? prev.date,
+      }));
+    } catch {
+      /* ignore unavailable storage */
+    }
+  }, []);
 
   const set = <K extends keyof Booking>(key: K, value: Booking[K]) =>
     setData((prev) => ({ ...prev, [key]: value }));
