@@ -20,6 +20,7 @@ Address: 2 Hundeyin St, Ogudu, Lagos 105102, Nigeria
 ## Pages
 
 - [Home](/): overview, booking steps and quote request
+- [Best moving company near me](/best-moving-company-near-me): local coverage, how to judge a nearby mover, response times, FAQs
 - [Moving company in Lagos](/moving-company-lagos): Lagos coverage, cost factors, how to compare movers, FAQs
 - [Moving company in Nigeria](/moving-company-nigeria): interstate routes, international relocations, FAQs
 - [Services](/services): full service catalogue
