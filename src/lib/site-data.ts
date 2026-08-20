@@ -13,7 +13,8 @@ export const site = {
     twitter: "https://twitter.com/packmyload",
     linkedin: "https://www.linkedin.com/company/packmyload-com/about/",
     threads: "https://www.threads.com/@packmyload",
-    youtube: "#",
+    youtube: "https://www.youtube.com/@Packmyload",
+    pinterest: "https://www.pinterest.com/packmyload/",
   },
 };
 
