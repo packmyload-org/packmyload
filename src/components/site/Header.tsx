@@ -155,9 +155,6 @@ export function Header() {
                   Book now
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full">
-                <a href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a>
-              </Button>
             </div>
           </div>
         </div>
