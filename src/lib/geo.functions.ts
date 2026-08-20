@@ -1,62 +1,55 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const GATEWAY_URL = "https://connector-gateway.lovable.dev/mapbox";
+const NOMINATIM_URL = "https://nominatim.openstreetmap.org";
+const USER_AGENT = "PackMyLoad/1.0 (https://packmyload.com)";
 
 type Suggestion = { id: string; label: string; lng: number; lat: number };
 
-type GeoResponse = {
-  features?: Array<{
-    id?: string;
-    properties?: { full_address?: string; place_formatted?: string; name?: string; coordinates?: { longitude: number; latitude: number } };
-  }>;
+type OsmPlace = {
+  place_id?: number;
+  display_name?: string;
+  lat?: string;
+  lon?: string;
 };
 
-async function mapboxFetch(path: string): Promise<GeoResponse | null> {
-  const lovableKey = process.env["LOVABLE_API_KEY"];
-  const connectionKey = process.env["MAPBOX_API_KEY"];
-  if (!lovableKey || !connectionKey) return null;
-
-  const response = await fetch(`${GATEWAY_URL}${path}`, {
-    headers: {
-      Authorization: `Bearer ${lovableKey}`,
-      "X-Connection-Api-Key": connectionKey,
-    },
-  });
-
-  if (!response.ok) {
-    const body = await response.text();
-    console.error(`Mapbox gateway failed [${response.status}]: ${body}`);
+async function osmFetch(path: string): Promise<unknown | null> {
+  try {
+    const response = await fetch(`${NOMINATIM_URL}${path}`, {
+      headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+    });
+    if (!response.ok) {
+      const body = await response.text();
+      console.error(`Nominatim request failed [${response.status}]: ${body}`);
+      return null;
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Nominatim request error", error);
     return null;
   }
-  return (await response.json()) as GeoResponse;
 }
 
-function toSuggestions(data: GeoResponse | null): Suggestion[] {
-  if (!data?.features) return [];
-  return data.features
-    .map((feature, index) => {
-      const props = feature.properties ?? {};
-      const label = props.full_address ?? (props.name ? `${props.name}${props.place_formatted ? `, ${props.place_formatted}` : ""}` : null);
-      if (!label || !props.coordinates) return null;
-      return {
-        id: feature.id ?? `feature-${index}`,
-        label,
-        lng: props.coordinates.longitude,
-        lat: props.coordinates.latitude,
-      };
-    })
-    .filter((item): item is Suggestion => item !== null);
+function toSuggestion(place: OsmPlace, index: number): Suggestion | null {
+  const lat = Number(place.lat);
+  const lng = Number(place.lon);
+  if (!place.display_name || Number.isNaN(lat) || Number.isNaN(lng)) return null;
+  return { id: String(place.place_id ?? `place-${index}`), label: place.display_name, lng, lat };
 }
 
 export const searchAddress = createServerFn({ method: "GET" })
   .inputValidator((data) => z.object({ query: z.string().min(1).max(200) }).parse(data))
   .handler(async ({ data }) => {
     const query = encodeURIComponent(data.query);
-    const result = await mapboxFetch(
-      `/search/geocode/v6/forward?q=${query}&limit=6&country=ng&language=en&proximity=3.3792,6.5244`,
+    const result = await osmFetch(
+      `/search?q=${query}&format=jsonv2&limit=6&countrycodes=ng&addressdetails=1&accept-language=en`,
     );
-    return { suggestions: toSuggestions(result), available: result !== null };
+    if (result === null) return { suggestions: [], available: false };
+    const places = Array.isArray(result) ? (result as OsmPlace[]) : [];
+    const suggestions = places
+      .map((place, index) => toSuggestion(place, index))
+      .filter((item): item is Suggestion => item !== null);
+    return { suggestions, available: true };
   });
 
 export const reverseGeocode = createServerFn({ method: "GET" })
@@ -64,9 +57,10 @@ export const reverseGeocode = createServerFn({ method: "GET" })
     z.object({ lng: z.number().min(-180).max(180), lat: z.number().min(-90).max(90) }).parse(data),
   )
   .handler(async ({ data }) => {
-    const result = await mapboxFetch(
-      `/search/geocode/v6/reverse?longitude=${data.lng}&latitude=${data.lat}&limit=1&language=en`,
+    const result = await osmFetch(
+      `/reverse?lat=${data.lat}&lon=${data.lng}&format=jsonv2&addressdetails=1&accept-language=en`,
     );
-    const suggestions = toSuggestions(result);
-    return { address: suggestions[0]?.label ?? null, available: result !== null };
+    if (result === null) return { address: null, available: false };
+    const place = toSuggestion(result as OsmPlace, 0);
+    return { address: place?.label ?? null, available: true };
   });
