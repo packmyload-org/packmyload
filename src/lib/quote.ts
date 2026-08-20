@@ -58,8 +58,8 @@ const round = (value: number) => Math.round(value / 1000) * 1000;
 
 export function estimateMove(input: {
   service: string;
-  size?: string;
-  interstate?: boolean;
+  size?: string | undefined;
+  interstate?: boolean | undefined;
 }): Estimate | null {
   const flat = flatServices[input.service];
   const size = input.size && input.size.length ? input.size : "Studio / single room";
