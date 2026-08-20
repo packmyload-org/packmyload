@@ -130,3 +130,26 @@ export const nigeriaFaqs = [
     a: "Packmyload Hub handles the tasks that follow a move — electricity and internet set-up, cleaning, storage and other essentials — so you are not chasing separate vendors after moving day.",
   },
 ];
+
+export const nearMeFaqs = [
+  {
+    q: "Which is the best moving company near me in Lagos or Abuja?",
+    a: "Packmyload covers every part of Lagos and Abuja, so a crew is already near you. Compare on the things that matter: goods-in-transit insurance from pick-up, an itemised quote based on volume, distance and access, trained and uniformed packers you can rate and tip, claims generally settled within two weeks, and one team for packing, storage, cleaning, junk removal and utility set-up.",
+  },
+  {
+    q: "How fast can movers get to my address?",
+    a: "Request on-demand and we arrive in as little as 30 minutes where a team is available nearby, or schedule up to 30 days in advance for a specific date and time.",
+  },
+  {
+    q: "Do you move within the same estate or building?",
+    a: "Yes. Short local moves, floor-to-floor moves inside a building and single-item moves are all handled, with furniture dismantling and reassembly where needed.",
+  },
+  {
+    q: "How do I get a quote for my exact address?",
+    a: "Enter your pick-up and drop-off addresses and preferred date on the booking form. We confirm volume, floor levels and access at both ends, then send an itemised quote — no charges added on moving day.",
+  },
+  {
+    q: "Are your movers insured and vetted?",
+    a: "Yes. Crews are vetted and trained, and every move is backed by a goods-in-transit insurance policy from the moment your items are in our hands.",
+  },
+];
