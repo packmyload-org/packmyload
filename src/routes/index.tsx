@@ -129,6 +129,21 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    // Defer the decorative hero video until the page is interactive so it
+    // never competes with LCP on mobile networks.
+    const idle =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(() => setShowVideo(true), { timeout: 3000 })
+        : window.setTimeout(() => setShowVideo(true), 1500);
+    return () => {
+      if ("cancelIdleCallback" in window) window.cancelIdleCallback(idle as number);
+      else window.clearTimeout(idle as number);
+    };
+  }, []);
+
   return (
     <>
       <section className="bg-primary-deep relative overflow-hidden">
@@ -178,8 +193,11 @@ function Home() {
                     alt={image.alt}
                     width={420}
                     height={320}
-                    loading={index < 3 ? "eager" : "lazy"}
+                    loading="eager"
+                    decoding={index === 0 ? "sync" : "async"}
+                    {...(index === 0 ? { fetchPriority: "high" as const } : {})}
                     className="mx-auto h-32 w-auto object-contain sm:h-36"
+                    style={{ aspectRatio: "420 / 320" }}
                   />
                 </li>
               ))}
