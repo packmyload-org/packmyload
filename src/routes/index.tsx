@@ -8,7 +8,14 @@ import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   IMG,
+  faqs,
   features,
   heroImages,
   marketplaceBenefits,
@@ -17,6 +24,9 @@ import {
   steps,
   testimonials,
 } from "@/lib/site-data";
+import { lagosFaqs, nigeriaFaqs } from "@/lib/seo-data";
+
+const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[2]!, faqs[3]!];
 
 const title = "Packmyload | Moving Company in Lagos & Abuja, Nigeria";
 const description =
