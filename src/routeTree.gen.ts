@@ -21,6 +21,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as HomeMovesRouteImport } from './routes/home-moves'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as InternationalRelocationsRouteImport } from './routes/international-relocations'
+import { Route as MovingCompanyLagosRouteImport } from './routes/moving-company-lagos'
 import { Route as OfficeMovesRouteImport } from './routes/office-moves'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -90,6 +91,11 @@ const InternationalRelocationsRoute =
     path: '/international-relocations',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MovingCompanyLagosRoute = MovingCompanyLagosRouteImport.update({
+  id: '/moving-company-lagos',
+  path: '/moving-company-lagos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OfficeMovesRoute = OfficeMovesRouteImport.update({
   id: '/office-moves',
   path: '/office-moves',
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
+  '/moving-company-lagos': typeof MovingCompanyLagosRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
+  '/moving-company-lagos': typeof MovingCompanyLagosRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/home-moves': typeof HomeMovesRoute
   '/hub': typeof HubRoute
   '/international-relocations': typeof InternationalRelocationsRoute
+  '/moving-company-lagos': typeof MovingCompanyLagosRoute
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/home-moves'
     | '/hub'
     | '/international-relocations'
+    | '/moving-company-lagos'
     | '/office-moves'
     | '/partner'
     | '/services'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/home-moves'
     | '/hub'
     | '/international-relocations'
+    | '/moving-company-lagos'
     | '/office-moves'
     | '/partner'
     | '/services'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/home-moves'
     | '/hub'
     | '/international-relocations'
+    | '/moving-company-lagos'
     | '/office-moves'
     | '/partner'
     | '/services'
@@ -269,6 +281,7 @@ export interface RootRouteChildren {
   HomeMovesRoute: typeof HomeMovesRoute
   HubRoute: typeof HubRoute
   InternationalRelocationsRoute: typeof InternationalRelocationsRoute
+  MovingCompanyLagosRoute: typeof MovingCompanyLagosRoute
   OfficeMovesRoute: typeof OfficeMovesRoute
   PartnerRoute: typeof PartnerRoute
   ServicesRoute: typeof ServicesRoute
@@ -364,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternationalRelocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/moving-company-lagos': {
+      id: '/moving-company-lagos'
+      path: '/moving-company-lagos'
+      fullPath: '/moving-company-lagos'
+      preLoaderRoute: typeof MovingCompanyLagosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/office-moves': {
       id: '/office-moves'
       path: '/office-moves'
@@ -429,6 +449,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeMovesRoute: HomeMovesRoute,
   HubRoute: HubRoute,
   InternationalRelocationsRoute: InternationalRelocationsRoute,
+  MovingCompanyLagosRoute: MovingCompanyLagosRoute,
   OfficeMovesRoute: OfficeMovesRoute,
   PartnerRoute: PartnerRoute,
   ServicesRoute: ServicesRoute,
