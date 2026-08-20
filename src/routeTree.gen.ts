@@ -24,6 +24,7 @@ import { Route as InternationalRelocationsRouteImport } from './routes/internati
 import { Route as OfficeMovesRouteImport } from './routes/office-moves'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StorageRouteImport } from './routes/storage'
 import { Route as StoreDeliveryRouteImport } from './routes/store-delivery'
 import { Route as WeddingHandlingRouteImport } from './routes/wedding-handling'
@@ -104,6 +105,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StorageRoute = StorageRouteImport.update({
   id: '/storage',
   path: '/storage',
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/office-moves': typeof OfficeMovesRoute
   '/partner': typeof PartnerRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/storage': typeof StorageRoute
   '/store-delivery': typeof StoreDeliveryRoute
   '/wedding-handling': typeof WeddingHandlingRoute
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/office-moves'
     | '/partner'
     | '/services'
+    | '/sitemap.xml'
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/office-moves'
     | '/partner'
     | '/services'
+    | '/sitemap.xml'
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/office-moves'
     | '/partner'
     | '/services'
+    | '/sitemap.xml'
     | '/storage'
     | '/store-delivery'
     | '/wedding-handling'
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   OfficeMovesRoute: typeof OfficeMovesRoute
   PartnerRoute: typeof PartnerRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StorageRoute: typeof StorageRoute
   StoreDeliveryRoute: typeof StoreDeliveryRoute
   WeddingHandlingRoute: typeof WeddingHandlingRoute
@@ -372,6 +385,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/storage': {
       id: '/storage'
       path: '/storage'
@@ -412,6 +432,7 @@ const rootRouteChildren: RootRouteChildren = {
   OfficeMovesRoute: OfficeMovesRoute,
   PartnerRoute: PartnerRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   StorageRoute: StorageRoute,
   StoreDeliveryRoute: StoreDeliveryRoute,
   WeddingHandlingRoute: WeddingHandlingRoute,
