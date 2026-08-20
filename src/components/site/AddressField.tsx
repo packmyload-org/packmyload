@@ -167,6 +167,12 @@ export function AddressField({
         </button>
       </div>
 
+      {!searchAvailable && value.trim().length >= 3 ? (
+        <span className="pointer-events-none absolute top-full left-4 mt-1 text-[0.68rem] text-muted-foreground">
+          Suggestions unavailable — type the full address.
+        </span>
+      ) : null}
+
       {open && suggestions.length > 0 ? (
         <ul className="absolute top-full left-0 z-50 mt-2 w-full max-w-md overflow-hidden rounded-2xl border border-border bg-popover text-left shadow-lift">
           {suggestions.map((suggestion) => (
