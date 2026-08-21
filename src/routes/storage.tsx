@@ -50,10 +50,17 @@ function StoragePage() {
               className="mt-8 rounded-full bg-cta text-cta-foreground hover:bg-cta/90"
             >
               <a
-                href="https://spacedey.com"
+                href={SPACEDEY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Spacedey storage (opens in a new tab)"
+                onClick={() =>
+                  trackOutboundClick({
+                    destination: SPACEDEY_URL,
+                    label: "storage-page-spacedey-cta",
+                    utm: SPACEDEY_UTM,
+                  })
+                }
               >
                 Visit spacedey.com
                 <ArrowUpRight className="size-4" aria-hidden="true" />
