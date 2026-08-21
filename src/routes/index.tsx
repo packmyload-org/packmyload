@@ -175,9 +175,9 @@ function Home() {
             <h1 className="text-4xl leading-[1.03] font-semibold text-primary-foreground sm:text-6xl lg:text-7xl">
               We make moving <span className="text-accent">seamless</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
-              Packmyload is a moving company in Lagos and Abuja: insured home and office
-              relocations, packing, storage and delivery anywhere in Nigeria.
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+              Every move is unique and we have the right solutions to make your move feel
+              effortless.
             </p>
           </Reveal>
 

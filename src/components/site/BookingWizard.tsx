@@ -350,16 +350,16 @@ export function BookingWizard() {
 
   return (
     <div className="mx-auto max-w-3xl rounded-4xl border border-border bg-card p-6 shadow-lift sm:p-10">
-      <ol className="flex items-center gap-2">
+      <ol className="flex items-center gap-1.5 sm:gap-2">
         {flow.map((key, index) => {
           const { label, Icon } = meta[key];
           const active = index === step;
           const complete = index < step;
           return (
-            <li key={key} className="flex flex-1 items-center gap-2">
+            <li key={key} className="flex min-w-0 flex-1 items-center gap-1.5 last:flex-none sm:gap-2">
               <span
                 className={cn(
-                  "flex size-9 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors",
+                  "flex size-8 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors sm:size-9",
                   complete && "border-accent bg-accent text-accent-foreground",
                   active && "border-accent bg-accent-soft text-accent-foreground",
                   !active && !complete && "border-border bg-secondary text-muted-foreground",
@@ -373,7 +373,7 @@ export function BookingWizard() {
               </span>
               <span
                 className={cn(
-                  "hidden text-xs font-semibold tracking-wide uppercase sm:block",
+                  "hidden truncate text-xs font-semibold tracking-wide uppercase md:block",
                   active ? "text-foreground" : "text-muted-foreground",
                 )}
               >
@@ -382,7 +382,7 @@ export function BookingWizard() {
               {index < flow.length - 1 ? (
                 <span
                   className={cn(
-                    "ml-1 h-px flex-1 transition-colors",
+                    "h-px min-w-2 flex-1 transition-colors",
                     complete ? "bg-accent" : "bg-border",
                   )}
                 />
@@ -391,6 +391,9 @@ export function BookingWizard() {
           );
         })}
       </ol>
+      <p className="mt-3 text-xs font-semibold tracking-wide uppercase text-muted-foreground md:hidden">
+        Step {step + 1} of {flow.length} · {meta[current].label}
+      </p>
 
       <div className="mt-8 min-h-[19rem]">
         {current === "service" ? (
