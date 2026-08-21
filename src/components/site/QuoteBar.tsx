@@ -101,8 +101,7 @@ export function QuoteBar({ className }: { className?: string }) {
         <Button
           type="submit"
           size="lg"
-          aria-label="Get a moving quote"
-          className="h-13 shrink-0 rounded-2xl bg-accent text-base font-semibold text-white hover:bg-accent/90 md:rounded-full"
+          className="h-13 shrink-0 rounded-2xl bg-cta text-base font-semibold text-cta-foreground hover:bg-cta/90 md:rounded-full"
         >
           Get quote
         </Button>

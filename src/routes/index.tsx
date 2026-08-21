@@ -255,6 +255,7 @@ function Home() {
           <Reveal delay={120} className="relative overflow-hidden rounded-4xl shadow-lift">
             <img
               src={`${IMG}/images/packman.webp`}
+            sizes="(max-width: 1024px) 92vw, 46vw"
               alt="Packmyload employee holding a box ready for a move"
               width={900}
               height={640}
@@ -456,7 +457,7 @@ function Home() {
                 delay={(index % 3) * 80}
                 className="flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-soft"
               >
-                <div className="flex gap-0.5 text-accent" aria-label="5 out of 5 stars">
+                <div className="flex gap-0.5 text-accent" role="img" aria-label="5 out of 5 stars">
                   {[0, 1, 2, 3, 4].map((star) => (
                     <Star key={star} className="size-4 fill-current" aria-hidden="true" />
                   ))}
