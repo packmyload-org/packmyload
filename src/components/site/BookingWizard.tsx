@@ -123,7 +123,13 @@ export function BookingWizard() {
     rule.alwaysInterstate || data.distance === "Interstate (state to state)",
   );
   const estimate: Estimate | null = data.service
-    ? estimateMove({ service: data.service, size: data.size || undefined, interstate })
+    ? estimateMove({
+        service: data.service,
+        size: data.size || undefined,
+        interstate,
+        pickupFloor: data.fromFloor || undefined,
+        destinationFloor: rule.needsDestination ? data.toFloor || undefined : undefined,
+      })
     : null;
 
   useEffect(() => {
