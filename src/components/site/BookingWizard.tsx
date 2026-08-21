@@ -446,7 +446,7 @@ export function BookingWizard() {
             <Button
               type="button"
               variant="outline"
-              className="mt-5 rounded-full"
+              className="mt-5 w-full rounded-full sm:w-auto"
               onClick={() => fileInput.current?.click()}
             >
               <ImagePlus className="size-4" aria-hidden="true" />
@@ -488,7 +488,7 @@ export function BookingWizard() {
               <Button
                 type="button"
                 variant="outline"
-                className="mt-3 rounded-full"
+                className="mt-3 w-full rounded-full sm:w-auto"
                 onClick={startQuick}
               >
                 <Send className="size-4" aria-hidden="true" />
