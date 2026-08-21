@@ -34,6 +34,7 @@ export const startDepositPayment = createServerFn({ method: "POST" })
       .object({
         reference: z.string().min(4).max(40),
         origin: z.string().url().max(200),
+        purpose: z.enum(["deposit", "survey"]).default("deposit"),
       })
       .parse(data),
   )
@@ -42,7 +43,10 @@ export const startDepositPayment = createServerFn({ method: "POST" })
     const booking = await mod.loadBooking(data.reference);
     if (!booking) return { ok: false as const, reason: "not-found" };
     if (!booking.email) return { ok: false as const, reason: "no-email" };
-    const amount = Number(booking.deposit_amount ?? 0);
+    const amount =
+      data.purpose === "survey"
+        ? Number(booking.survey_fee ?? mod.SURVEY_CONSULTATION_FEE)
+        : Number(booking.deposit_amount ?? 0);
     if (!amount) return { ok: false as const, reason: "no-amount" };
 
     const init = await mod.paystackInitialize({
@@ -60,6 +64,7 @@ export const startDepositPayment = createServerFn({ method: "POST" })
     });
     return { ok: true as const, authorizationUrl: init.authorizationUrl };
   });
+
 
 export const confirmDepositPayment = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ paymentReference: z.string().min(4).max(120) }).parse(data))

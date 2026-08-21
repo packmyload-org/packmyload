@@ -143,6 +143,8 @@ export type Database = {
           reference: string
           service: string
           status: string
+          survey_fee: number | null
+          survey_requested: boolean
         }
         Insert: {
           arrival_window?: string | null
@@ -168,6 +170,8 @@ export type Database = {
           reference: string
           service: string
           status?: string
+          survey_fee?: number | null
+          survey_requested?: boolean
         }
         Update: {
           arrival_window?: string | null
@@ -193,6 +197,8 @@ export type Database = {
           reference?: string
           service?: string
           status?: string
+          survey_fee?: number | null
+          survey_requested?: boolean
         }
         Relationships: []
       }

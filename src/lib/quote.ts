@@ -10,10 +10,18 @@
 export const VAT_RATE = 0.075;
 export const DEPOSIT_RATE = 0.3;
 
+/** Flat fee for an on-site survey / consultation visit. */
+export const SURVEY_FEE = 30_000;
+
 type Band = { min: number; max: number };
 
 /** Base band shared by every relocation service. */
 export const RELOCATION_BASE: Band = { min: 450_000, max: 800_000 };
+
+/** Larger homes start from their own base band instead of the standard one. */
+const sizeBase: Record<string, Band> = {
+  "4+ bedrooms": { min: 1_000_000, max: 1_500_000 },
+};
 
 /** Relocation services priced off RELOCATION_BASE. */
 const relocationFactor: Record<string, number> = {
@@ -30,9 +38,10 @@ const sizeFactor: Record<string, number> = {
   "A few items only": 1,
   "Studio / single room": 1.1,
   "2 – 3 bedrooms": 1.25,
-  "4+ bedrooms": 1.55,
+  "4+ bedrooms": 1,
   "Office / commercial": 1.4,
 };
+
 
 /** Interstate routes cost more fuel, tolls and crew time. */
 const INTERSTATE_FACTOR = 1.6;
@@ -106,8 +115,10 @@ export function estimateMove(input: {
       notes.push("floor access");
     }
 
-    min = RELOCATION_BASE.min * factor;
-    max = RELOCATION_BASE.max * factor;
+    const base = sizeBase[size] ?? RELOCATION_BASE;
+    min = base.min * factor;
+    max = base.max * factor;
+
   }
 
   min = round(min);

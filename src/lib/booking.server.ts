@@ -1,6 +1,8 @@
-import { estimateMove, naira } from "@/lib/quote";
+import { estimateMove, naira, SURVEY_FEE } from "@/lib/quote";
 
 export const TEAM_INBOX = "book@packmyload.com";
+export const SURVEY_CONSULTATION_FEE = SURVEY_FEE;
+
 
 export type BookingRow = {
   reference: string;
@@ -20,7 +22,10 @@ export type BookingRow = {
   estimate_min: number | null;
   estimate_max: number | null;
   deposit_amount: number | null;
+  survey_requested: boolean | null;
+  survey_fee: number | null;
   is_quick_request: boolean;
+
 };
 
 async function admin() {
