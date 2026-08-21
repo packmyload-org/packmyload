@@ -15,5 +15,6 @@ export const sendContactMessage = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const mod = await import("@/lib/contact.server");
     const result = await mod.sendContactEmails(data);
-    return { ok: result.teamSent, ...result };
+    return { ok: result.customerSent, ...result };
+
   });
