@@ -68,6 +68,8 @@ export function bookingEmailHtml(
     service: booking.service,
     size: booking.move_size ?? undefined,
     interstate: false,
+    pickupFloor: booking.pickup_floor,
+    destinationFloor: booking.destination_floor,
   });
   const range =
     booking.estimate_min && booking.estimate_max
