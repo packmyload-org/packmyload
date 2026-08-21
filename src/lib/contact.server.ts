@@ -61,3 +61,4 @@ export async function sendContactEmails(input: ContactMessage) {
 
   return { teamSent: team.sent, customerSent: customer.sent };
 }
+
