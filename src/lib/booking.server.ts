@@ -1,6 +1,8 @@
-import { estimateMove, naira } from "@/lib/quote";
+import { estimateMove, naira, SURVEY_FEE } from "@/lib/quote";
 
 export const TEAM_INBOX = "book@packmyload.com";
+export const SURVEY_CONSULTATION_FEE = SURVEY_FEE;
+
 
 export type BookingRow = {
   reference: string;
