@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
@@ -9,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { site, abs } from "@/lib/site-data";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 const title = "Contact Packmyload | Movers in Lagos & Abuja";
 const description =
@@ -56,16 +58,39 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [sending, setSending] = useState(false);
+  const send = useServerFn(sendContactMessage);
 
-  const submit = (event: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
+    const values = new FormData(form);
     setSending(true);
-    toast.success("Message sent", {
-      description: "Thanks for reaching out — our team will reply shortly.",
-    });
-    form.reset();
-    setSending(false);
+    try {
+      const result = await send({
+        data: {
+          name: String(values.get("name") ?? ""),
+          email: String(values.get("email") ?? ""),
+          phone: String(values.get("phone") ?? ""),
+          message: String(values.get("message") ?? ""),
+        },
+      });
+      if (result.ok) {
+        toast.success("Message sent", {
+          description: "Thanks for reaching out — our team will reply shortly.",
+        });
+        form.reset();
+      } else {
+        toast.error("We couldn't send that message", {
+          description: `Please call ${site.phoneDisplay} and we'll help right away.`,
+        });
+      }
+    } catch {
+      toast.error("Something went wrong", {
+        description: `Please try again or call ${site.phoneDisplay}.`,
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
