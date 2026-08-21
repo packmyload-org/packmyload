@@ -115,8 +115,10 @@ export function estimateMove(input: {
       notes.push("floor access");
     }
 
-    min = RELOCATION_BASE.min * factor;
-    max = RELOCATION_BASE.max * factor;
+    const base = sizeBase[size] ?? RELOCATION_BASE;
+    min = base.min * factor;
+    max = base.max * factor;
+
   }
 
   min = round(min);
