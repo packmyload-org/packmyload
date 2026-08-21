@@ -698,10 +698,10 @@ export function BookingWizard() {
         ) : null}
       </div>
 
-      <div className="mt-8 flex items-center justify-between gap-3 border-t border-border pt-6">
+      <div className="mt-8 flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         <Button
           variant="ghost"
-          className="rounded-full"
+          className="w-full rounded-full sm:w-auto"
           onClick={() => {
             if (quick && step === 2) {
               setQuick(false);
@@ -715,14 +715,14 @@ export function BookingWizard() {
           <ArrowLeft className="size-4" aria-hidden="true" />
           Back
         </Button>
-        <span className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">
+        <span className="hidden text-xs font-semibold tracking-wide uppercase text-muted-foreground md:block">
           Step {step + 1} of {flow.length}
         </span>
         <Button
           onClick={next}
           size="lg"
           disabled={submitting}
-          className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
+          className="w-full rounded-full bg-accent text-accent-foreground hover:bg-accent/90 sm:w-auto"
         >
           {submitting ? (
             <>
@@ -731,8 +731,10 @@ export function BookingWizard() {
             </>
           ) : (
             <>
-              {isLast ? (quick ? "Send to an agent" : "Confirm booking") : "Continue"}
-              <ArrowRight className="size-4" aria-hidden="true" />
+              <span className="truncate">
+                {isLast ? (quick ? "Send to an agent" : "Confirm booking") : "Continue"}
+              </span>
+              <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
             </>
           )}
         </Button>
