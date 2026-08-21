@@ -14,6 +14,110 @@ export type Database = {
   }
   public: {
     Tables: {
+      artisan_requests: {
+        Row: {
+          address: string | null
+          artisan_id: string | null
+          created_at: string
+          details: string | null
+          email: string | null
+          full_name: string
+          id: string
+          phone: string
+          preferred_date: string | null
+          status: string
+          trade: string
+        }
+        Insert: {
+          address?: string | null
+          artisan_id?: string | null
+          created_at?: string
+          details?: string | null
+          email?: string | null
+          full_name: string
+          id?: string
+          phone: string
+          preferred_date?: string | null
+          status?: string
+          trade: string
+        }
+        Update: {
+          address?: string | null
+          artisan_id?: string | null
+          created_at?: string
+          details?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          phone?: string
+          preferred_date?: string | null
+          status?: string
+          trade?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "artisan_requests_artisan_id_fkey"
+            columns: ["artisan_id"]
+            isOneToOne: false
+            referencedRelation: "artisans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      artisans: {
+        Row: {
+          bio: string | null
+          created_at: string
+          full_name: string
+          id: string
+          is_active: boolean
+          is_verified: boolean
+          phone: string
+          photo_url: string | null
+          rate_max: number | null
+          rate_min: number | null
+          rate_unit: string
+          service_areas: string[]
+          trade: string
+          updated_at: string
+          whatsapp: string | null
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          full_name: string
+          id?: string
+          is_active?: boolean
+          is_verified?: boolean
+          phone: string
+          photo_url?: string | null
+          rate_max?: number | null
+          rate_min?: number | null
+          rate_unit?: string
+          service_areas?: string[]
+          trade: string
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_active?: boolean
+          is_verified?: boolean
+          phone?: string
+          photo_url?: string | null
+          rate_max?: number | null
+          rate_min?: number | null
+          rate_unit?: string
+          service_areas?: string[]
+          trade?: string
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           arrival_window: string | null
