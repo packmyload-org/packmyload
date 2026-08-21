@@ -175,9 +175,9 @@ function Home() {
             <h1 className="text-4xl leading-[1.03] font-semibold text-primary-foreground sm:text-6xl lg:text-7xl">
               We make moving <span className="text-accent">seamless</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
-              Packmyload is a moving company in Lagos and Abuja: insured home and office
-              relocations, packing, storage and delivery anywhere in Nigeria.
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+              Every move is unique and we have the right solutions to make your move feel
+              effortless.
             </p>
           </Reveal>
 
@@ -255,6 +255,8 @@ function Home() {
           <Reveal delay={120} className="relative overflow-hidden rounded-4xl shadow-lift">
             <img
               src={`${IMG}/images/packman.webp`}
+              srcSet={`${IMG}/images/packman-480.webp 480w, ${IMG}/images/packman-720.webp 720w, ${IMG}/images/packman.webp 667w`}
+              sizes="(max-width: 1024px) 92vw, 46vw"
               alt="Packmyload employee holding a box ready for a move"
               width={900}
               height={640}
@@ -456,7 +458,7 @@ function Home() {
                 delay={(index % 3) * 80}
                 className="flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-soft"
               >
-                <div className="flex gap-0.5 text-accent" aria-label="5 out of 5 stars">
+                <div className="flex gap-0.5 text-accent" role="img" aria-label="5 out of 5 stars">
                   {[0, 1, 2, 3, 4].map((star) => (
                     <Star key={star} className="size-4 fill-current" aria-hidden="true" />
                   ))}

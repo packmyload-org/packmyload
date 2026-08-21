@@ -350,16 +350,16 @@ export function BookingWizard() {
 
   return (
     <div className="mx-auto max-w-3xl rounded-4xl border border-border bg-card p-6 shadow-lift sm:p-10">
-      <ol className="flex items-center gap-2">
+      <ol className="flex items-center gap-1.5 sm:gap-2">
         {flow.map((key, index) => {
           const { label, Icon } = meta[key];
           const active = index === step;
           const complete = index < step;
           return (
-            <li key={key} className="flex flex-1 items-center gap-2">
+            <li key={key} className="flex min-w-0 flex-1 items-center gap-1.5 last:flex-none sm:gap-2">
               <span
                 className={cn(
-                  "flex size-9 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors",
+                  "flex size-8 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors sm:size-9",
                   complete && "border-accent bg-accent text-accent-foreground",
                   active && "border-accent bg-accent-soft text-accent-foreground",
                   !active && !complete && "border-border bg-secondary text-muted-foreground",
@@ -373,7 +373,7 @@ export function BookingWizard() {
               </span>
               <span
                 className={cn(
-                  "hidden text-xs font-semibold tracking-wide uppercase sm:block",
+                  "hidden truncate text-xs font-semibold tracking-wide uppercase md:block",
                   active ? "text-foreground" : "text-muted-foreground",
                 )}
               >
@@ -382,7 +382,7 @@ export function BookingWizard() {
               {index < flow.length - 1 ? (
                 <span
                   className={cn(
-                    "ml-1 h-px flex-1 transition-colors",
+                    "h-px min-w-2 flex-1 transition-colors",
                     complete ? "bg-accent" : "bg-border",
                   )}
                 />
@@ -391,6 +391,9 @@ export function BookingWizard() {
           );
         })}
       </ol>
+      <p className="mt-3 text-xs font-semibold tracking-wide uppercase text-muted-foreground md:hidden">
+        Step {step + 1} of {flow.length} · {meta[current].label}
+      </p>
 
       <div className="mt-8 min-h-[19rem]">
         {current === "service" ? (
@@ -443,7 +446,7 @@ export function BookingWizard() {
             <Button
               type="button"
               variant="outline"
-              className="mt-5 rounded-full"
+              className="mt-5 w-full rounded-full sm:w-auto"
               onClick={() => fileInput.current?.click()}
             >
               <ImagePlus className="size-4" aria-hidden="true" />
@@ -485,7 +488,7 @@ export function BookingWizard() {
               <Button
                 type="button"
                 variant="outline"
-                className="mt-3 rounded-full"
+                className="mt-3 w-full rounded-full sm:w-auto"
                 onClick={startQuick}
               >
                 <Send className="size-4" aria-hidden="true" />
@@ -695,10 +698,10 @@ export function BookingWizard() {
         ) : null}
       </div>
 
-      <div className="mt-8 flex items-center justify-between gap-3 border-t border-border pt-6">
+      <div className="mt-8 flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         <Button
           variant="ghost"
-          className="rounded-full"
+          className="w-full rounded-full sm:w-auto"
           onClick={() => {
             if (quick && step === 2) {
               setQuick(false);
@@ -712,14 +715,14 @@ export function BookingWizard() {
           <ArrowLeft className="size-4" aria-hidden="true" />
           Back
         </Button>
-        <span className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">
+        <span className="hidden text-xs font-semibold tracking-wide uppercase text-muted-foreground md:block">
           Step {step + 1} of {flow.length}
         </span>
         <Button
           onClick={next}
           size="lg"
           disabled={submitting}
-          className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
+          className="w-full rounded-full bg-accent text-accent-foreground hover:bg-accent/90 sm:w-auto"
         >
           {submitting ? (
             <>
@@ -728,8 +731,10 @@ export function BookingWizard() {
             </>
           ) : (
             <>
-              {isLast ? (quick ? "Send to an agent" : "Confirm booking") : "Continue"}
-              <ArrowRight className="size-4" aria-hidden="true" />
+              <span className="truncate">
+                {isLast ? (quick ? "Send to an agent" : "Confirm booking") : "Continue"}
+              </span>
+              <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
             </>
           )}
         </Button>

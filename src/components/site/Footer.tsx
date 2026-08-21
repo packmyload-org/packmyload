@@ -36,6 +36,7 @@ const company = [
   { label: "Gallery", to: "/gallery" },
   { label: "Partner with us", to: "/partner" },
   { label: "Packmyload Hub", to: "/hub" },
+  { label: "Hub artisans", to: "/artisans" },
   { label: "FAQs", to: "/Faqs" },
   { label: "Contact", to: "/contact" },
 ];

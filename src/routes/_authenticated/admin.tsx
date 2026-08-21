@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { CalendarCheck, LayoutDashboard, LogOut, MessagesSquare } from "lucide-react";
+import { CalendarCheck, LayoutDashboard, LogOut, MessagesSquare, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -8,6 +8,7 @@ const nav = [
   { to: "/admin", label: "Overview", Icon: LayoutDashboard, exact: true },
   { to: "/admin/bookings", label: "Bookings", Icon: CalendarCheck, exact: false },
   { to: "/admin/leads", label: "Chat leads", Icon: MessagesSquare, exact: false },
+  { to: "/admin/artisans", label: "Artisans", Icon: Wrench, exact: false },
 ];
 
 export const Route = createFileRoute("/_authenticated/admin")({
