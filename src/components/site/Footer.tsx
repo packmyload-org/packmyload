@@ -140,7 +140,10 @@ export function Footer() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Packmyload. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Packmyload. All rights reserved. Packmyload™ is a
+            trademark of Total Moves.
+          </p>
           <p>Moving company in Lagos &amp; Abuja, Nigeria.</p>
         </div>
       </div>
