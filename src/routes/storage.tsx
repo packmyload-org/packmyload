@@ -5,8 +5,17 @@ import { ServiceDetail } from "@/components/site/ServiceDetail";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
 import { services, abs } from "@/lib/site-data";
+import { trackOutboundClick, withUtm, type OutboundUtm } from "@/lib/track";
 
 const service = services.find((item) => item.slug === "storage")!;
+
+const SPACEDEY_UTM: OutboundUtm = {
+  utm_source: "packmyload",
+  utm_medium: "referral",
+  utm_campaign: "storage-page",
+  utm_content: "storage-cta",
+};
+const SPACEDEY_URL = withUtm("https://spacedey.com", SPACEDEY_UTM);
 
 const title = `${service.title} | Packmyload Movers Lagos & Abuja`;
 const description = service.intro.slice(0, 155);
@@ -50,10 +59,17 @@ function StoragePage() {
               className="mt-8 rounded-full bg-cta text-cta-foreground hover:bg-cta/90"
             >
               <a
-                href="https://spacedey.com"
+                href={SPACEDEY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Spacedey storage (opens in a new tab)"
+                onClick={() =>
+                  trackOutboundClick({
+                    destination: SPACEDEY_URL,
+                    label: "storage-page-spacedey-cta",
+                    utm: SPACEDEY_UTM,
+                  })
+                }
               >
                 Visit spacedey.com
                 <ArrowUpRight className="size-4" aria-hidden="true" />

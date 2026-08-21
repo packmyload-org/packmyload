@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Select,
   SelectContent,
@@ -200,7 +201,35 @@ function ArtisansPage() {
         </div>
 
         {artisansQuery.isLoading ? (
-          <p className="mt-10 text-sm text-muted-foreground">Loading artisans…</p>
+          <div
+            className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            aria-busy="true"
+            aria-label="Loading artisans"
+          >
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={index}
+                className="flex flex-col rounded-3xl border border-border bg-card p-5 shadow-soft"
+              >
+                <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
+                  <Skeleton className="size-12 rounded-2xl" />
+                  <div className="min-w-0 space-y-2">
+                    <Skeleton className="h-4 w-2/3" />
+                    <Skeleton className="h-3 w-1/3" />
+                  </div>
+                </div>
+                <Skeleton className="mt-4 h-5 w-40 rounded-full" />
+                <div className="mt-3 space-y-2">
+                  <Skeleton className="h-3 w-full" />
+                  <Skeleton className="h-3 w-11/12" />
+                  <Skeleton className="h-3 w-3/5" />
+                </div>
+                <Skeleton className="mt-3 h-3 w-2/3" />
+                <Skeleton className="mt-4 h-4 w-32" />
+                <Skeleton className="mt-5 h-10 w-full rounded-full" />
+              </div>
+            ))}
+          </div>
         ) : null}
 
         {!artisansQuery.isLoading && artisans.length === 0 ? (
