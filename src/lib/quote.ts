@@ -1,8 +1,9 @@
 /**
  * Move quote estimator.
  *
- * Ported from the pricing tables used on the previous Packmyload site
- * (intra-state and inter-state bedroom bands, plus 7.5% VAT).
+ * Relocation services start from a flat base band of ₦450,000 – ₦800,000.
+ * Size, interstate distance and floor access (stairs / walk-up) add on top of
+ * that base. Non-relocation services keep their own standalone rate bands.
  * All figures are in Nigerian Naira.
  */
 
@@ -11,34 +12,41 @@ export const DEPOSIT_RATE = 0.3;
 
 type Band = { min: number; max: number };
 
-const intraState: Record<string, Band> = {
-  "A few items only": { min: 60_000, max: 120_000 },
-  "Studio / single room": { min: 150_000, max: 200_000 },
-  "2 – 3 bedrooms": { min: 250_000, max: 315_000 },
-  "4+ bedrooms": { min: 450_000, max: 550_000 },
-  "Office / commercial": { min: 400_000, max: 750_000 },
-};
+/** Base band shared by every relocation service. */
+export const RELOCATION_BASE: Band = { min: 450_000, max: 800_000 };
 
-const interState: Record<string, Band> = {
-  "A few items only": { min: 180_000, max: 350_000 },
-  "Studio / single room": { min: 550_000, max: 650_000 },
-  "2 – 3 bedrooms": { min: 700_000, max: 1_200_000 },
-  "4+ bedrooms": { min: 1_450_000, max: 1_700_000 },
-  "Office / commercial": { min: 1_200_000, max: 2_000_000 },
-};
-
-/** Service level multipliers / overrides applied on top of the size band. */
-const serviceFactor: Record<string, number> = {
+/** Relocation services priced off RELOCATION_BASE. */
+const relocationFactor: Record<string, number> = {
   "Home Relocations": 1,
   "Office Relocations": 1.15,
   "International Relocations": 2.5,
-  "Store Delivery": 0.35,
-  "Junk Removal": 0.3,
-  "Wedding Gifts Handling": 0.4,
-  "Cleaning Services": 0.25,
-  Storage: 0.2,
-  "Interstate Car Transport": 1,
+  "Store Delivery": 0.55,
+  "Junk Removal": 0.45,
+  "Wedding Gifts Handling": 0.6,
 };
+
+/** Size uplift applied on top of the base band (never below 1x). */
+const sizeFactor: Record<string, number> = {
+  "A few items only": 1,
+  "Studio / single room": 1.1,
+  "2 – 3 bedrooms": 1.25,
+  "4+ bedrooms": 1.55,
+  "Office / commercial": 1.4,
+};
+
+/** Interstate routes cost more fuel, tolls and crew time. */
+const INTERSTATE_FACTOR = 1.6;
+
+/** Floor access surcharge per address (share of the base band). */
+const floorSurcharge: Record<string, number> = {
+  "Ground floor": 0,
+  "1st floor": 0.05,
+  "2nd floor": 0.09,
+  "3rd floor or higher": 0.15,
+};
+
+/** Stairs on a long-haul job hurt more — floor impact is amplified. */
+const INTERSTATE_FLOOR_MULTIPLIER = 1.5;
 
 const flatServices: Record<string, Band> = {
   "Interstate Car Transport": { min: 250_000, max: 450_000 },
@@ -56,32 +64,58 @@ export type Estimate = {
 
 const round = (value: number) => Math.round(value / 1000) * 1000;
 
+const floorFactor = (floor: string | undefined | null) =>
+  floor ? (floorSurcharge[floor] ?? 0) : 0;
+
 export function estimateMove(input: {
   service: string;
   size?: string | undefined;
   interstate?: boolean | undefined;
+  pickupFloor?: string | undefined | null;
+  destinationFloor?: string | undefined | null;
 }): Estimate | null {
   const flat = flatServices[input.service];
-  const size = input.size && input.size.length ? input.size : "Studio / single room";
-  const table = input.interstate ? interState : intraState;
-  const band = flat ?? table[size];
-  if (!band) return null;
+  const service = relocationFactor[input.service];
+  if (!flat && service === undefined) return null;
 
-  const factor = flat ? 1 : (serviceFactor[input.service] ?? 1);
-  const min = round(band.min * factor);
-  const max = round(band.max * factor);
+  const size = input.size && input.size.length ? input.size : "2 – 3 bedrooms";
+  const notes: string[] = [];
+
+  let min: number;
+  let max: number;
+
+  if (flat) {
+    min = flat.min;
+    max = flat.max;
+    notes.push(`${input.service} standard rate`);
+  } else {
+    const sizeUplift = sizeFactor[size] ?? 1;
+    let factor = (service ?? 1) * sizeUplift;
+    notes.push(size);
+
+    if (input.interstate) {
+      factor *= INTERSTATE_FACTOR;
+      notes.push("interstate route");
+    } else {
+      notes.push("within-state move");
+    }
+
+    const floors = floorFactor(input.pickupFloor) + floorFactor(input.destinationFloor);
+    if (floors > 0) {
+      factor *= 1 + floors * (input.interstate ? INTERSTATE_FLOOR_MULTIPLIER : 1);
+      notes.push("floor access");
+    }
+
+    min = RELOCATION_BASE.min * factor;
+    max = RELOCATION_BASE.max * factor;
+  }
+
+  min = round(min);
+  max = round(max);
   const vat = Math.round(((min + max) / 2) * VAT_RATE);
   const deposit = round(min * DEPOSIT_RATE);
 
-  return {
-    min,
-    max,
-    vat,
-    deposit,
-    basis: flat
-      ? `${input.service} standard rate`
-      : `${size} · ${input.interstate ? "interstate" : "within-state"} move`,
-  };
+  return { min, max, vat, deposit, basis: notes.join(" · ") };
 }
 
 export const naira = (value: number) =>
