@@ -254,7 +254,7 @@ function Home() {
           </Reveal>
           <Reveal delay={120} className="relative overflow-hidden rounded-4xl shadow-lift">
             <img
-                src={`${IMG}/images/packman.webp`}
+              src={`${IMG}/images/packman.webp`}
               srcSet={`${IMG}/images/packman-480.webp 480w, ${IMG}/images/packman-720.webp 720w, ${IMG}/images/packman.webp 667w`}
               sizes="(max-width: 1024px) 92vw, 46vw"
               alt="Packmyload employee holding a box ready for a move"
