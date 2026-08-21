@@ -49,12 +49,17 @@ function HubPage() {
         title="One call to connect all your utilities and home services"
         body="Moving in is more than boxes. Hub is one concierge service that gets your new home switched on and running."
       >
-        <Button asChild size="lg" className="mt-8 rounded-full">
-          <Link to="/contact">
-            Get estimate
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </Button>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <Button asChild size="lg" className="rounded-full">
+            <Link to="/artisans">
+              Browse vetted artisans
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full bg-card/10">
+            <Link to="/contact">Get estimate</Link>
+          </Button>
+        </div>
       </PageHero>
 
       <section className="container-page grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2">
