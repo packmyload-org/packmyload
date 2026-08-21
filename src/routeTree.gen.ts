@@ -40,6 +40,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as MoversIndexRouteImport } from './routes/movers.index'
 import { Route as MoversAreaRouteImport } from './routes/movers.$area'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminArtisansRouteImport } from './routes/_authenticated/admin.artisans'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 
@@ -198,6 +199,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminArtisansRoute =
+  AuthenticatedAdminArtisansRouteImport.update({
+    id: '/artisans',
+    path: '/artisans',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminBookingsRoute =
   AuthenticatedAdminBookingsRouteImport.update({
     id: '/bookings',
@@ -240,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/movers/$area': typeof MoversAreaRoute
   '/movers/': typeof MoversIndexRoute
+  '/admin/artisans': typeof AuthenticatedAdminArtisansRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -272,6 +280,7 @@ export interface FileRoutesByTo {
   '/wedding-handling': typeof WeddingHandlingRoute
   '/movers/$area': typeof MoversAreaRoute
   '/movers': typeof MoversIndexRoute
+  '/admin/artisans': typeof AuthenticatedAdminArtisansRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -308,6 +317,7 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/movers/$area': typeof MoversAreaRoute
   '/movers/': typeof MoversIndexRoute
+  '/_authenticated/admin/artisans': typeof AuthenticatedAdminArtisansRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -344,6 +354,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/movers/$area'
     | '/movers/'
+    | '/admin/artisans'
     | '/admin/bookings'
     | '/admin/leads'
     | '/admin/'
@@ -376,6 +387,7 @@ export interface FileRouteTypes {
     | '/wedding-handling'
     | '/movers/$area'
     | '/movers'
+    | '/admin/artisans'
     | '/admin/bookings'
     | '/admin/leads'
     | '/admin'
@@ -411,6 +423,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/movers/$area'
     | '/movers/'
+    | '/_authenticated/admin/artisans'
     | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/leads'
     | '/_authenticated/admin/'
@@ -665,6 +678,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/artisans': {
+      id: '/_authenticated/admin/artisans'
+      path: '/artisans'
+      fullPath: '/admin/artisans'
+      preLoaderRoute: typeof AuthenticatedAdminArtisansRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/bookings': {
       id: '/_authenticated/admin/bookings'
       path: '/bookings'
@@ -683,12 +703,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminArtisansRoute: typeof AuthenticatedAdminArtisansRoute
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminArtisansRoute: AuthenticatedAdminArtisansRoute,
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
