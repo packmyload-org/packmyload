@@ -176,7 +176,7 @@ export function Header() {
               <Link
                 to="/book"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center rounded-full bg-cta px-6 py-3 text-sm font-extrabold uppercase text-white"
+                className="inline-flex items-center justify-center rounded-full bg-cta px-6 py-3 text-sm font-extrabold uppercase text-cta-foreground"
               >
                 Book now
               </Link>
