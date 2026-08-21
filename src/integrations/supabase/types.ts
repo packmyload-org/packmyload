@@ -244,6 +244,36 @@ export type Database = {
         }
         Relationships: []
       }
+      outbound_clicks: {
+        Row: {
+          created_at: string
+          destination: string
+          id: string
+          label: string | null
+          referrer: string | null
+          source_path: string | null
+          utm: Json | null
+        }
+        Insert: {
+          created_at?: string
+          destination: string
+          id?: string
+          label?: string | null
+          referrer?: string | null
+          source_path?: string | null
+          utm?: Json | null
+        }
+        Update: {
+          created_at?: string
+          destination?: string
+          id?: string
+          label?: string | null
+          referrer?: string | null
+          source_path?: string | null
+          utm?: Json | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
