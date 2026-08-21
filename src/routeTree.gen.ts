@@ -15,6 +15,7 @@ import { Route as InterstateCarTransportRouteImport } from './routes/Interstate-
 import { Route as JunkMovesRouteImport } from './routes/Junk-moves'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ArtisansRouteImport } from './routes/artisans'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BestMovingCompanyNearMeRouteImport } from './routes/best-moving-company-near-me'
 import { Route as BookRouteImport } from './routes/book'
@@ -69,6 +70,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtisansRoute = ArtisansRouteImport.update({
+  id: '/artisans',
+  path: '/artisans',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -210,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
+  '/artisans': typeof ArtisansRoute
   '/auth': typeof AuthRoute
   '/best-moving-company-near-me': typeof BestMovingCompanyNearMeRoute
   '/book': typeof BookRoute
@@ -243,6 +250,7 @@ export interface FileRoutesByTo {
   '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
+  '/artisans': typeof ArtisansRoute
   '/auth': typeof AuthRoute
   '/best-moving-company-near-me': typeof BestMovingCompanyNearMeRoute
   '/book': typeof BookRoute
@@ -276,6 +284,7 @@ export interface FileRoutesById {
   '/Interstate-Car-Transport': typeof InterstateCarTransportRoute
   '/Junk-moves': typeof JunkMovesRoute
   '/about': typeof AboutRoute
+  '/artisans': typeof ArtisansRoute
   '/auth': typeof AuthRoute
   '/best-moving-company-near-me': typeof BestMovingCompanyNearMeRoute
   '/book': typeof BookRoute
@@ -311,6 +320,7 @@ export interface FileRouteTypes {
     | '/Interstate-Car-Transport'
     | '/Junk-moves'
     | '/about'
+    | '/artisans'
     | '/auth'
     | '/best-moving-company-near-me'
     | '/book'
@@ -344,6 +354,7 @@ export interface FileRouteTypes {
     | '/Interstate-Car-Transport'
     | '/Junk-moves'
     | '/about'
+    | '/artisans'
     | '/auth'
     | '/best-moving-company-near-me'
     | '/book'
@@ -376,6 +387,7 @@ export interface FileRouteTypes {
     | '/Interstate-Car-Transport'
     | '/Junk-moves'
     | '/about'
+    | '/artisans'
     | '/auth'
     | '/best-moving-company-near-me'
     | '/book'
@@ -411,6 +423,7 @@ export interface RootRouteChildren {
   InterstateCarTransportRoute: typeof InterstateCarTransportRoute
   JunkMovesRoute: typeof JunkMovesRoute
   AboutRoute: typeof AboutRoute
+  ArtisansRoute: typeof ArtisansRoute
   AuthRoute: typeof AuthRoute
   BestMovingCompanyNearMeRoute: typeof BestMovingCompanyNearMeRoute
   BookRoute: typeof BookRoute
@@ -475,6 +488,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artisans': {
+      id: '/artisans'
+      path: '/artisans'
+      fullPath: '/artisans'
+      preLoaderRoute: typeof ArtisansRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -708,6 +728,7 @@ const rootRouteChildren: RootRouteChildren = {
   InterstateCarTransportRoute: InterstateCarTransportRoute,
   JunkMovesRoute: JunkMovesRoute,
   AboutRoute: AboutRoute,
+  ArtisansRoute: ArtisansRoute,
   AuthRoute: AuthRoute,
   BestMovingCompanyNearMeRoute: BestMovingCompanyNearMeRoute,
   BookRoute: BookRoute,
