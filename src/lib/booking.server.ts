@@ -22,7 +22,10 @@ export type BookingRow = {
   estimate_min: number | null;
   estimate_max: number | null;
   deposit_amount: number | null;
+  survey_requested: boolean | null;
+  survey_fee: number | null;
   is_quick_request: boolean;
+
 };
 
 async function admin() {
