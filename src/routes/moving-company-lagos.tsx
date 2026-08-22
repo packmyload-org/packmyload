@@ -27,6 +27,7 @@ export const Route = createFileRoute("/moving-company-lagos")({
     meta: [
       { title },
       { name: "description", content: description },
+      { name: "keywords", content: "best moving company in Lagos, best moving companies in Lagos, movers and packers in Lagos, best moving companies, house movers Lagos, office relocation company Lagos" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "article" },

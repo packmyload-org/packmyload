@@ -4,21 +4,13 @@ import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
 import heroVideo from "@/assets/hero-move.mp4.asset.json";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
-import { KeywordClusters } from "@/components/site/KeywordClusters";
 import { QuoteBar } from "@/components/site/QuoteBar";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   IMG,
   SITE_URL,
-  faqs,
   features,
   heroImages,
   marketplaceBenefits,
@@ -26,13 +18,22 @@ import {
   site,
   steps,
   testimonials, abs } from "@/lib/site-data";
-import { lagosFaqs, nigeriaFaqs } from "@/lib/seo-data";
-
-const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[2]!, faqs[3]!];
 
 const title = "Best Moving Company in Lagos & Abuja | Packmyload";
 const description =
   "Top-rated movers and packers in Lagos & Abuja. Insured home and office relocation, interstate moves across Nigeria, storage, junk removal and set-up.";
+const keywords = [
+  "best moving company",
+  "best moving companies",
+  "best moving companies near me",
+  "best moving company near me",
+  "best moving company in Lagos",
+  "best moving company in Nigeria",
+  "best movers and packers near me",
+  "top rated movers near me",
+  "affordable moving company near me",
+  "interstate moving company Nigeria",
+].join(", ");
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 
 export const Route = createFileRoute("/")({
@@ -40,6 +41,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title },
       { name: "description", content: description },
+      { name: "keywords", content: keywords },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:image", content: abs(ogImage) },
@@ -120,12 +122,28 @@ export const Route = createFileRoute("/")({
           },
           {
             "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: homeFaqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.q,
-              acceptedAnswer: { "@type": "Answer", text: faq.a },
-            })),
+            "@type": "ItemList",
+            name: "Best moving company searches answered by Packmyload",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Best moving company in Lagos",
+                url: `${SITE_URL}/moving-company-lagos`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Best moving companies near me",
+                url: `${SITE_URL}/best-moving-company-near-me`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Best interstate moving company in Nigeria",
+                url: `${SITE_URL}/moving-company-nigeria`,
+              },
+            ],
           },
         ]),
       },
@@ -477,41 +495,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <section className="container-page py-16 sm:py-24">
-        <SectionHeading
-          eyebrow="Answers"
-          title="Moving in Lagos and Nigeria: quick answers"
-          body="The questions customers ask most before booking a move."
-        />
-        <Reveal className="mx-auto mt-10 max-w-3xl rounded-4xl border border-border bg-card p-4 shadow-soft sm:p-8">
-          <Accordion type="single" collapsible className="w-full">
-            {homeFaqs.map((faq, index) => (
-              <AccordionItem key={faq.q} value={`home-faq-${index}`}>
-                <AccordionTrigger className="text-left text-base font-semibold">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
-        <p className="mt-8 text-center text-sm text-muted-foreground">
-          More detail on{" "}
-          <Link to="/moving-company-lagos" className="font-medium text-primary underline">
-            moving companies in Lagos
-          </Link>{" "}
-          and{" "}
-          <Link to="/moving-company-nigeria" className="font-medium text-primary underline">
-            interstate moving across Nigeria
-          </Link>
-          .
-        </p>
-      </section>
-
-      <KeywordClusters />
 
       <CtaBand />
     </>

@@ -38,6 +38,8 @@ type Booking = {
   estimate_min: number | null;
   estimate_max: number | null;
   deposit_amount: number | null;
+  survey_requested: boolean | null;
+  survey_fee: number | null;
   payment_status: string;
   is_quick_request: boolean;
 };
@@ -240,6 +242,16 @@ function BookingsAdmin() {
                 <dd className="text-foreground">
                   {booking.deposit_amount ? naira(Number(booking.deposit_amount)) : "—"} ·{" "}
                   {booking.payment_status}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs tracking-wide uppercase text-muted-foreground">
+                  On-site survey
+                </dt>
+                <dd className="text-foreground">
+                  {booking.survey_requested
+                    ? `Requested · ${naira(Number(booking.survey_fee ?? 30000))}`
+                    : "Not requested"}
                 </dd>
               </div>
               {booking.notes ? (

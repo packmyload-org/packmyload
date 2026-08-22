@@ -25,7 +25,7 @@ import { AddressField } from "@/components/site/AddressField";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyBooking, startDepositPayment } from "@/lib/booking.functions";
 import { ruleFor, todayISO } from "@/lib/booking-rules";
-import { estimateMove, naira, type Estimate } from "@/lib/quote";
+import { estimateMove, naira, SURVEY_FEE, type Estimate } from "@/lib/quote";
 import { services } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
@@ -101,6 +101,7 @@ export function BookingWizard() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<Booking>(empty);
   const [quick, setQuick] = useState(false);
+  const [survey, setSurvey] = useState(false);
   const [done, setDone] = useState(false);
   const [photos, setPhotos] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
@@ -208,6 +209,8 @@ export function BookingWizard() {
         estimate_max: estimate?.max ?? null,
         deposit_amount: estimate?.deposit ?? null,
         is_quick_request: quick,
+        survey_requested: survey,
+        survey_fee: survey ? SURVEY_FEE : null,
       });
       if (error) throw error;
 
@@ -227,11 +230,11 @@ export function BookingWizard() {
     }
   };
 
-  const payDeposit = async () => {
+  const payDeposit = async (purpose: "deposit" | "survey" = "deposit") => {
     setPaying(true);
     try {
       const result = await startPayment({
-        data: { reference, origin: window.location.origin },
+        data: { reference, origin: window.location.origin, purpose },
       });
       if (!result.ok || !("authorizationUrl" in result)) {
         toast.error("Online payment isn't available yet", {
@@ -326,6 +329,30 @@ export function BookingWizard() {
           </div>
         ) : null}
 
+        {survey ? (
+          <div className="mt-4 rounded-3xl border border-border bg-surface p-5 text-left text-sm">
+            <p className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">
+              On-site survey requested
+            </p>
+            <p className="mt-1 text-2xl font-semibold">{naira(SURVEY_FEE)}</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              One-off consultation fee for the survey visit and fixed-price quote.
+            </p>
+            <Button
+              className="mt-3 rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
+              onClick={() => void payDeposit("survey")}
+              disabled={paying || !data.email.trim()}
+            >
+              {paying ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <CreditCard className="size-4" aria-hidden="true" />
+              )}
+              Pay survey fee
+            </Button>
+          </div>
+        ) : null}
+
         <dl className="mt-8 grid gap-3 text-left text-sm">
           <Row label="Service" value={[data.service, data.size].filter(Boolean).join(" · ")} />
           <Row
@@ -344,6 +371,7 @@ export function BookingWizard() {
             setPhotos([]);
             setReference("");
             setQuick(false);
+            setSurvey(false);
             setStep(0);
             setDone(false);
           }}
@@ -485,7 +513,27 @@ export function BookingWizard() {
               </ul>
             ) : null}
 
-            <div className="mt-8 rounded-3xl border border-dashed border-border bg-surface p-5">
+            <div className="mt-8 rounded-3xl border border-border bg-surface p-5">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={survey}
+                  onChange={(event) => setSurvey(event.target.checked)}
+                  className="mt-1 size-4 shrink-0 accent-[var(--accent)]"
+                />
+                <span>
+                  <span className="block text-sm font-semibold">
+                    Request an on-site survey ({naira(SURVEY_FEE)} consultation fee)
+                  </span>
+                  <span className="mt-1 block text-sm text-muted-foreground">
+                    A consultant visits your address, measures the full inventory and confirms a
+                    fixed price. The {naira(SURVEY_FEE)} fee is payable after you submit this form.
+                  </span>
+                </span>
+              </label>
+            </div>
+
+            <div className="mt-4 rounded-3xl border border-dashed border-border bg-surface p-5">
               <p className="text-sm font-semibold">In a hurry?</p>
               <p className="mt-1 text-sm text-muted-foreground">
                 Skip the rest of the form. Send us your photos, address and phone number and an agent

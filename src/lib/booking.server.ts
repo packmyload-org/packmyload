@@ -102,6 +102,9 @@ export function bookingEmailHtml(
     booking.email ? row("Email", booking.email) : "",
     booking.notes ? row("Notes", booking.notes) : "",
     row("Estimate", range),
+    booking.survey_requested
+      ? row("On-site survey", `Requested · ${naira(Number(booking.survey_fee ?? SURVEY_FEE))} consultation fee`)
+      : "",
   ]
     .filter(Boolean)
     .join("");
