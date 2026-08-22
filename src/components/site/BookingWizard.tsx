@@ -485,7 +485,27 @@ export function BookingWizard() {
               </ul>
             ) : null}
 
-            <div className="mt-8 rounded-3xl border border-dashed border-border bg-surface p-5">
+            <div className="mt-8 rounded-3xl border border-border bg-surface p-5">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={survey}
+                  onChange={(event) => setSurvey(event.target.checked)}
+                  className="mt-1 size-4 shrink-0 accent-[var(--accent)]"
+                />
+                <span>
+                  <span className="block text-sm font-semibold">
+                    Request an on-site survey ({naira(SURVEY_FEE)} consultation fee)
+                  </span>
+                  <span className="mt-1 block text-sm text-muted-foreground">
+                    A consultant visits your address, measures the full inventory and confirms a
+                    fixed price. The {naira(SURVEY_FEE)} fee is payable after you submit this form.
+                  </span>
+                </span>
+              </label>
+            </div>
+
+            <div className="mt-4 rounded-3xl border border-dashed border-border bg-surface p-5">
               <p className="text-sm font-semibold">In a hurry?</p>
               <p className="mt-1 text-sm text-muted-foreground">
                 Skip the rest of the form. Send us your photos, address and phone number and an agent
