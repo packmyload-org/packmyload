@@ -244,6 +244,16 @@ function BookingsAdmin() {
                   {booking.payment_status}
                 </dd>
               </div>
+              <div>
+                <dt className="text-xs tracking-wide uppercase text-muted-foreground">
+                  On-site survey
+                </dt>
+                <dd className="text-foreground">
+                  {booking.survey_requested
+                    ? `Requested · ${naira(Number(booking.survey_fee ?? 30000))}`
+                    : "Not requested"}
+                </dd>
+              </div>
               {booking.notes ? (
                 <div className="sm:col-span-2">
                   <dt className="text-xs tracking-wide uppercase text-muted-foreground">Notes</dt>
