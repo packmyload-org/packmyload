@@ -121,12 +121,28 @@ export const Route = createFileRoute("/")({
           },
           {
             "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: homeFaqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.q,
-              acceptedAnswer: { "@type": "Answer", text: faq.a },
-            })),
+            "@type": "ItemList",
+            name: "Best moving company searches answered by Packmyload",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Best moving company in Lagos",
+                url: `${SITE_URL}/moving-company-lagos`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Best moving companies near me",
+                url: `${SITE_URL}/best-moving-company-near-me`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Best interstate moving company in Nigeria",
+                url: `${SITE_URL}/moving-company-nigeria`,
+              },
+            ],
           },
         ]),
       },
