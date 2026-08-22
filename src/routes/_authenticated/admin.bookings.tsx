@@ -38,6 +38,8 @@ type Booking = {
   estimate_min: number | null;
   estimate_max: number | null;
   deposit_amount: number | null;
+  survey_requested: boolean | null;
+  survey_fee: number | null;
   payment_status: string;
   is_quick_request: boolean;
 };
