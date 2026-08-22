@@ -478,41 +478,6 @@ function Home() {
         </div>
       </section>
 
-      <section className="container-page py-16 sm:py-24">
-        <SectionHeading
-          eyebrow="Answers"
-          title="Moving in Lagos and Nigeria: quick answers"
-          body="The questions customers ask most before booking a move."
-        />
-        <Reveal className="mx-auto mt-10 max-w-3xl rounded-4xl border border-border bg-card p-4 shadow-soft sm:p-8">
-          <Accordion type="single" collapsible className="w-full">
-            {homeFaqs.map((faq, index) => (
-              <AccordionItem key={faq.q} value={`home-faq-${index}`}>
-                <AccordionTrigger className="text-left text-base font-semibold">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
-        <p className="mt-8 text-center text-sm text-muted-foreground">
-          More detail on{" "}
-          <Link to="/moving-company-lagos" className="font-medium text-primary underline">
-            moving companies in Lagos
-          </Link>{" "}
-          and{" "}
-          <Link to="/moving-company-nigeria" className="font-medium text-primary underline">
-            interstate moving across Nigeria
-          </Link>
-          .
-        </p>
-      </section>
-
-      <KeywordClusters />
-
       <CtaBand />
     </>
   );
