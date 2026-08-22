@@ -41,6 +41,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title },
       { name: "description", content: description },
+      { name: "keywords", content: keywords },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:image", content: abs(ogImage) },
