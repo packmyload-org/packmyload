@@ -4,21 +4,13 @@ import { ArrowRight, Check, PlayCircle, Star } from "lucide-react";
 import heroVideo from "@/assets/hero-move.mp4.asset.json";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
-import { KeywordClusters } from "@/components/site/KeywordClusters";
 import { QuoteBar } from "@/components/site/QuoteBar";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   IMG,
   SITE_URL,
-  faqs,
   features,
   heroImages,
   marketplaceBenefits,
@@ -26,13 +18,22 @@ import {
   site,
   steps,
   testimonials, abs } from "@/lib/site-data";
-import { lagosFaqs, nigeriaFaqs } from "@/lib/seo-data";
-
-const homeFaqs = [lagosFaqs[0]!, lagosFaqs[1]!, nigeriaFaqs[0]!, faqs[1]!, faqs[2]!, faqs[3]!];
 
 const title = "Best Moving Company in Lagos & Abuja | Packmyload";
 const description =
   "Top-rated movers and packers in Lagos & Abuja. Insured home and office relocation, interstate moves across Nigeria, storage, junk removal and set-up.";
+const keywords = [
+  "best moving company",
+  "best moving companies",
+  "best moving companies near me",
+  "best moving company near me",
+  "best moving company in Lagos",
+  "best moving company in Nigeria",
+  "best movers and packers near me",
+  "top rated movers near me",
+  "affordable moving company near me",
+  "interstate moving company Nigeria",
+].join(", ");
 const ogImage = `${SITE_URL}/images/Packmyload.com-home-office-relocations.webp`;
 
 export const Route = createFileRoute("/")({
