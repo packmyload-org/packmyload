@@ -25,7 +25,7 @@ import { AddressField } from "@/components/site/AddressField";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyBooking, startDepositPayment } from "@/lib/booking.functions";
 import { ruleFor, todayISO } from "@/lib/booking-rules";
-import { estimateMove, naira, type Estimate } from "@/lib/quote";
+import { estimateMove, naira, SURVEY_FEE, type Estimate } from "@/lib/quote";
 import { services } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
@@ -101,6 +101,7 @@ export function BookingWizard() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<Booking>(empty);
   const [quick, setQuick] = useState(false);
+  const [survey, setSurvey] = useState(false);
   const [done, setDone] = useState(false);
   const [photos, setPhotos] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
@@ -208,6 +209,8 @@ export function BookingWizard() {
         estimate_max: estimate?.max ?? null,
         deposit_amount: estimate?.deposit ?? null,
         is_quick_request: quick,
+        survey_requested: survey,
+        survey_fee: survey ? SURVEY_FEE : null,
       });
       if (error) throw error;
 
@@ -227,11 +230,11 @@ export function BookingWizard() {
     }
   };
 
-  const payDeposit = async () => {
+  const payDeposit = async (purpose: "deposit" | "survey" = "deposit") => {
     setPaying(true);
     try {
       const result = await startPayment({
-        data: { reference, origin: window.location.origin },
+        data: { reference, origin: window.location.origin, purpose },
       });
       if (!result.ok || !("authorizationUrl" in result)) {
         toast.error("Online payment isn't available yet", {
@@ -344,6 +347,7 @@ export function BookingWizard() {
             setPhotos([]);
             setReference("");
             setQuick(false);
+            setSurvey(false);
             setStep(0);
             setDone(false);
           }}
