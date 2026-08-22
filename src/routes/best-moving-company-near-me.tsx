@@ -26,6 +26,7 @@ export const Route = createFileRoute("/best-moving-company-near-me")({
     meta: [
       { title },
       { name: "description", content: description },
+      { name: "keywords", content: "best moving companies near me, best moving company near me, best movers and packers near me, top rated movers near me, affordable moving company near me, same day movers near me, best moving company" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "article" },

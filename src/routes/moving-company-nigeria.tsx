@@ -27,6 +27,7 @@ export const Route = createFileRoute("/moving-company-nigeria")({
     meta: [
       { title },
       { name: "description", content: description },
+      { name: "keywords", content: "best moving company in Nigeria, best moving companies in Nigeria, interstate movers Nigeria, long distance moving company Nigeria, Lagos to Abuja movers, best moving companies near me" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "article" },
