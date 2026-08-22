@@ -329,6 +329,30 @@ export function BookingWizard() {
           </div>
         ) : null}
 
+        {survey ? (
+          <div className="mt-4 rounded-3xl border border-border bg-surface p-5 text-left text-sm">
+            <p className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">
+              On-site survey requested
+            </p>
+            <p className="mt-1 text-2xl font-semibold">{naira(SURVEY_FEE)}</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              One-off consultation fee for the survey visit and fixed-price quote.
+            </p>
+            <Button
+              className="mt-3 rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
+              onClick={() => void payDeposit("survey")}
+              disabled={paying || !data.email.trim()}
+            >
+              {paying ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <CreditCard className="size-4" aria-hidden="true" />
+              )}
+              Pay survey fee
+            </Button>
+          </div>
+        ) : null}
+
         <dl className="mt-8 grid gap-3 text-left text-sm">
           <Row label="Service" value={[data.service, data.size].filter(Boolean).join(" · ")} />
           <Row
